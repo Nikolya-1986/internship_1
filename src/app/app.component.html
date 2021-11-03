@@ -1,0 +1,19 @@
+
+<div *ngFor="let user of users$ | async">
+    <img [src]="user.image">
+    <ul>
+        <li>
+            {{ user.name }}
+        </li>
+        <li>
+            {{ user.status }}
+        </li>
+        <li>
+            {{ user.species }}
+        </li>
+        <li>
+            {{ user.gender }}
+        </li>
+        <hr>
+    </ul>
+</div>
