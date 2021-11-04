@@ -1,6 +1,6 @@
 import { ActionReducerMap, createFeatureSelector, createSelector, createSelectorFactory } from "@ngrx/store";
-import { UsersReducer, UsersState } from "./app.reducer";
-import AppUsersState from "./app.state";
+import { UsersReducer, UsersState } from "./character.card.reducer";
+import AppUsersState from "./character.card.state";
 
 export const getUsersFutureSelector = createFeatureSelector<UsersState>("users")
 

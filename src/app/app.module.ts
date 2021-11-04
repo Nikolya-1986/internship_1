@@ -5,19 +5,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
-// import { reducers, metaReducers } from './reducers';
 
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
-import { UsersReducer } from './store/app.reducer';
-import { UsersEffects } from './store/app.effect';
-import { reducerUsers } from './store/app.selector';
+import { UsersEffects } from './store/character-card/character.card.effect';
+import { reducerUsers } from './store/character-card/character.card.selector';
+
+import { CharacterCardComponent } from './components/character-card/character-card.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CharacterCardComponent
   ],
   imports: [
     BrowserModule,
