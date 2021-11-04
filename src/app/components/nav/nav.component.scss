@@ -1,0 +1,29 @@
+.nav {
+    display: flex;
+    justify-content: start;
+    background-color: var(--transparent-color);
+
+    &__logo {
+        width: 4%;
+    }
+
+    &__navigation {
+        display: flex;
+        justify-content: space-between;
+
+        ul {
+            display: flex;
+            align-items: center;
+
+            li {
+                padding: 0 10px;
+                font-size: 2rem;
+            }
+        }
+    }
+
+}
+
+.active a {
+    color: var(--primary-color);
+}

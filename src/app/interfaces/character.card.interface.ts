@@ -7,7 +7,8 @@ export interface CharacterDTO {
     status: string,
     species: string,
     gender: string,
-    image: string
+    image: string,
+    created: Date
 }
 
 export interface Character extends CharacterDTO {
