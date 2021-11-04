@@ -7,6 +7,6 @@ import { Component } from "@angular/core";
 })
 export class NavComponent {
 
-    public logo: string = "../assets/images/Angular_full_color_logo.svg";
+    public logo: string = "assets/images/Angular_full_color_logo.svg";
     constructor(){}
 }
