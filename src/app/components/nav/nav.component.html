@@ -1,0 +1,26 @@
+<section class="nav__container content nav">
+    <div class="nav__logo">
+        <a routerLink="">
+            <img [src]="logo">
+        </a>
+    </div>
+    <nav class="nav__navigation">
+        <ul>
+            <li 
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact:true}"
+                >
+                <a routerLink="">
+                    Home
+                </a>
+            </li>
+            <li 
+                routerLinkActive="active"
+                >
+                <a routerLink="/description">
+                    Description
+                </a>
+            </li>
+        </ul>
+    </nav>
+</section>

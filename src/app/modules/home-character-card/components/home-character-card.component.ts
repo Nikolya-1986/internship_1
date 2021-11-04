@@ -1,19 +1,18 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { select, Store } from "@ngrx/store";
-import { Observable } from "rxjs";
-
+import { Observable } from "rxjs/internal/Observable";
 import { Character } from "src/app/interfaces/character.card.interface";
-import *as usersActions from "src/app/store/character-card/character.card.actions";
-import *as usersSelector from "src/app/store/character-card/character.card.selector";
-import AppUsersState from "src/app/store/character-card/character.card.state";
 
+import AppUsersState from "src/app/store/character-card/character.card.state";
+import * as usersActions from "src/app/store/character-card/character.card.actions";
+import *as usersSelector from "src/app/store/character-card/character.card.selector";
 
 @Component({
-    selector: 'app-character-card',
-    templateUrl: './character-card.component.html',
-    styleUrls: ['./character-card.component.scss']
+    selector: 'app-home-character-card',
+    templateUrl: './home-character-card.component.html',
+    styleUrls: ['./home-character-card.component.scss']
 })
-export class CharacterCardComponent implements OnInit {
+export class HomeCharacterCardComponent {
 
     public title: string = "Page cartoon characters"
 
