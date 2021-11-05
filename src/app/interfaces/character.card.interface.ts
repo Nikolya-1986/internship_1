@@ -3,19 +3,20 @@ export interface CharactersDTO {
 }
 
 export interface CharacterDTO {
+    id: number;
     name: string,
     status: string,
     species: string,
     gender: Gender,
     image: string,
     created: Date,
-    origin: Origin[],
-    location: Location[]
+    origin: Origin,
+    location: Location
 }
 
-export interface Character extends CharacterDTO {
-    id: number;
-}
+// export interface Character extends CharacterDTO {
+//     id: number;
+// }
 
 export enum Gender{
     Male,
@@ -24,11 +25,11 @@ export enum Gender{
 }
 
 export interface Origin {
-    nameOrigin: string,
-    urlOrigin: string
+    name: string,
+    url: string
 }
 
 export interface Location {
-    nameLocation: string,
-    urlLocation: string
+    name: string,
+    url: string
 }
