@@ -20,4 +20,4 @@ import { DescriptionCharacterCardComponent } from "./components/description-char
         RouterModule 
     ]
 })
-export class DiscriptionCharacterCardModule {}
+export class DescriptionCharacterCardModule {}

@@ -1,3 +1,62 @@
-<h1>
-    Description
-</h1>
+<section 
+    *ngIf="characterDetail$ | async as characterDetails"
+    class="character-detail__container character-detail"
+    >
+    <h1>
+        Page Description
+    </h1>
+
+    <button routerLink="/">
+        Back characters
+    </button>
+    <table class="table table-hover table-dark table-bordered table-sm text-center">
+        <thead>
+            <tr class="bg-primary">
+                <th *ngFor="let column of columns; let ind = index">
+                    {{ column }}
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="bg-secondary">
+                <!-- <td *ngFor="let index of indexes">
+                    {{ characterDetails[index] }}
+                </td> -->
+                <td>
+                    {{ characterDetails.id }}
+                </td>
+                <td>
+                    {{ characterDetails.name }}
+                </td>
+                <td>
+                    {{ characterDetails.status }}
+                </td>
+                <td>
+                    {{ characterDetails.species }}
+                </td>
+                <td>
+                    {{ characterDetails.gender }}
+                </td>
+                <td>
+                    {{ characterDetails.created }}
+                </td>
+                <td>
+                    {{ characterDetails.origin.name }}
+                </td>
+                <td>
+                    {{ characterDetails.origin.url }}
+                </td>
+                <td>
+                    {{ characterDetails.location.name }}
+                </td>
+                <td>
+                    {{ characterDetails.location.url }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="character-detail__image">
+        <img [src]="characterDetails.image">
+    </div>
+</section>

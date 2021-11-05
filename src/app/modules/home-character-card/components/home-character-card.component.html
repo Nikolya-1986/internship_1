@@ -1,6 +1,6 @@
-<section class="haracterCard__container haracterCard">
+<section class="haracter-card__container haracter-card">
     <h1>
-        {{ title }}
+        Page cartoon characters
     </h1>
 
     <div *ngIf="error$ | async else showBlock">
@@ -10,26 +10,32 @@
     </div>
 
     <ng-template #showBlock> 
-        <div class="haracterCard__wrapper">
+        <div class="haracter-card__wrapper">
             <div 
-                class="haracterCard__list"
-                *ngFor="let user of users$ | async"
+                class="haracter-card__list"
+                *ngFor="let character of characters$ | async"
                 >
-                <img [src]="user.image">
+                <img [src]="character.image">
                 <ul>
                     <li>
-                        Name: {{ user.name }}
+                        Name: {{ character.name }}
                     </li>
                     <li>
-                        Status: {{ user.status }}
+                        Status: {{ character.status }}
                     </li>
                     <li>
-                        Species: {{ user.species }}
+                        Species: {{ character.species }}
                     </li>
                     <li>
-                        Gender: {{ user.gender }}
+                        Gender: {{ character.gender }}
                     </li>
                 </ul>
+                <button 
+                    class="haracter-card__detail"
+                    (click)="detailCharacter(character.id)"
+                    >
+                    Detail
+                </button>
             </div>
         </div>
     </ng-template>

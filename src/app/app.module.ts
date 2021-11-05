@@ -11,8 +11,8 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
-import { reducerUsers } from './store/character-card/character.card.selector';
-import { UsersEffects } from './store/character-card/character.card.effect';
+import { reducerUsers } from './store/character-card/character-card.selector';
+import { CharactersEffects } from './store/character-card/character-card.effect';
 
 
 @NgModule({
@@ -28,7 +28,7 @@ import { UsersEffects } from './store/character-card/character.card.effect';
     ReactiveFormsModule,
     StoreModule.forRoot(reducerUsers),
     StoreDevtoolsModule.instrument({ maxAge: 25 }),
-    EffectsModule.forRoot([UsersEffects]),
+    EffectsModule.forRoot([CharactersEffects]),
     StoreRouterConnectingModule.forRoot()
   ],
   providers: [],
