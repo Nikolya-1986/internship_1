@@ -1,0 +1,16 @@
+.list-cards {
+
+    &__filter {
+        margin-bottom: 2rem;
+
+        label {
+            padding-right: 1rem;
+        }
+    }
+
+    &__list {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+}

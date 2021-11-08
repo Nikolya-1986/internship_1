@@ -19,9 +19,10 @@ export interface CharacterDTO {
 // }
 
 export enum Gender{
-    Male,
-    Female,
-    Other
+    Male = 'Male',
+    Female = 'Female',
+    Other = 'Other',
+    All = 'All'
 }
 
 export interface Origin {

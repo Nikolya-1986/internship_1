@@ -1,0 +1,38 @@
+<section class="list-cards__container list-cards">
+
+    <div class="list-cards__filter">
+        <label for="filter-gender">
+            Select gender
+        </label>
+        <select
+            id="filter-gender"
+            [(ngModel)]="filterGerder"
+            >
+            <option
+                *ngFor="let item of gerder" 
+                [value]="item"
+                >
+                {{ item }}
+            </option>
+        </select>
+    </div>
+
+    <div class="list-cards__list">
+        <div *ngIf="error else showBlock">
+            <strong>
+                You list cartoon characters is empty
+            </strong>
+        </div>
+        <ng-template #showBlock> 
+            <div *ngFor="let character of characters | filterCharacterCard: filterGerder"
+                >
+                <app-item-character-cards
+                    [character]="character"
+                    (onDetailCharacter)="detailCharacter($event)"
+                    >
+                </app-item-character-cards>
+            </div>
+        </ng-template>
+    </div>
+    
+</section>
