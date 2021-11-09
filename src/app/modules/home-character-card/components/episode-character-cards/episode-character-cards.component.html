@@ -1,0 +1,10 @@
+<section class="episode-character__container episode-character">
+    <div class="episode-character__button">
+        <button 
+            *ngFor="let item of episodes"
+            (click)="episodeSelect(item.id)"
+            >
+            {{ item.episode }}
+        </button>
+    </div>
+</section>

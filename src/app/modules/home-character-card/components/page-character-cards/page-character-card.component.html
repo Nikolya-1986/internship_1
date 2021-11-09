@@ -2,7 +2,12 @@
     <h1>
         Page cartoon characters
     </h1>
+    <app-episode-character-cards
+        (onEpisodeSelect)="episodeSelect($event)"
+        >
 
+    </app-episode-character-cards>
+    
     <app-list-character-cards
         [loading]="loading$ | async"
         [characters]="characters$ | async"

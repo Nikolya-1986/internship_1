@@ -1,9 +1,9 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable, throwError } from "rxjs";
-import { map, catchError } from "rxjs/operators";
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
 
-import { CharacterDTO, CharactersDTO } from "src/app/interfaces/character.card.interface";
+import { CharacterDTO, CharactersDTO, Episode, EpisodesDTO } from "src/app/interfaces/character.card.interface";
 
 
 @Injectable({
@@ -19,11 +19,17 @@ export class CharacterCardService  {
 
     getCharacters(): Observable<CharacterDTO[]>{
         return this.httpClient.get<CharactersDTO>(`${this.BASE_URL}/character`).pipe(
-            map((data) => data.results.map((item) => ({...item,})))
+            map((data) => data.results.map((item) => ({...item}))),
         )
     }
 
     getCharactersId(id: number): Observable<CharacterDTO>{
         return this.httpClient.get<CharacterDTO>(`${this.BASE_URL}/character/${id}`)
+    }
+
+    getEpisodes(): Observable<Episode[]> {
+        return this.httpClient.get<EpisodesDTO>(`${this.BASE_URL}/episode`).pipe(
+            map((data) => data.results),
+        )
     }
 }

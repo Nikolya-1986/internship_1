@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { select, Store } from "@ngrx/store";
-import { Observable, Subscription } from "rxjs";
+import { Observable } from "rxjs";
 import { Router } from "@angular/router";
 
 import { CharacterDTO } from "../../../../interfaces/character.card.interface";
@@ -26,7 +26,7 @@ export class PageharacterCardComponent implements OnInit {
     ){}
 
     public ngOnInit(): void {
-        this.store.dispatch(charactersActions.loadCharactersRequest()),
+        this.store.dispatch(charactersActions.loadCharactersRequest());
         this.loading$ = this.store.pipe(select(charactersSelectors.getCharactersLoadingSelector));
         this.characters$ = this.store.pipe(select(charactersSelectors.getCharactersListSelector));
         this.error$ = this.store.pipe(select(charactersSelectors.getCharactersFailSelector));
@@ -34,5 +34,9 @@ export class PageharacterCardComponent implements OnInit {
 
     public detailCharacter(id: number) {
         this.router.navigate(['/', id]);
+    }
+
+    public episodeSelect(episode: any) {
+        console.log(episode);
     }
 }

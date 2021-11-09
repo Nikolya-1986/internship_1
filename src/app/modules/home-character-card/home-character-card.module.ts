@@ -7,16 +7,21 @@ import { DescriptionCharacterCardComponent } from "../description-character-card
 import { PageharacterCardComponent } from "./components/page-character-cards/page-character-card.component";
 import { ItemCharacterCardsComponent } from "./components/item-character-cards/item-character-cards.component";
 import { ListCharacterCartsComponent } from "./components/list-character-cards/list-character-cards.component";
+import { EpisodeCharacterCardsComponent } from "./components/episode-character-cards/episode-character-cards.component";
 import { FilterCharacterCardPipe } from "./pipe/filter-character-card.pipe";
 import { SortCharacterCardNamePipe } from "./pipe/sort-characters-card-name.pipe";
+import { FilterCharacterCardEpisodePipe } from "./pipe/filter-character-card-episode.pipe";
+
 
 @NgModule({
     declarations: [
         PageharacterCardComponent,
         ListCharacterCartsComponent,
         ItemCharacterCardsComponent,
+        EpisodeCharacterCardsComponent,
         FilterCharacterCardPipe,
-        SortCharacterCardNamePipe
+        SortCharacterCardNamePipe,
+        FilterCharacterCardEpisodePipe
     ],
     imports: [
         CommonModule,
@@ -34,7 +39,8 @@ import { SortCharacterCardNamePipe } from "./pipe/sort-characters-card-name.pipe
     exports: [
         RouterModule,
         FilterCharacterCardPipe,
-        SortCharacterCardNamePipe
+        SortCharacterCardNamePipe,
+        FilterCharacterCardEpisodePipe
     ]
 })
 export class HomeCharacterCardModule {}
