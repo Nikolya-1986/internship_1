@@ -1,8 +1,7 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
-import { ActivatedRoute, Params } from "@angular/router";
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 import { select, Store } from "@ngrx/store";
 import { Observable, Subject } from "rxjs";
-import { takeUntil } from "rxjs/operators";
 
 import { CharacterDTO } from "../../../interfaces/character.card.interface";
 import * as charactersActions from "../../../store/character-card/character-card.actions";
@@ -14,7 +13,7 @@ import AppCharactersState from "../../../store/character-card/character-card.sta
     templateUrl: './description-character-card.component.html',
     styleUrls: ['./description-character-card.component.scss']
 })
-export class DescriptionCharacterCardComponent implements OnInit, OnDestroy {
+export class DescriptionCharacterCardComponent implements OnInit {
 
     public characterDetail$!: Observable<CharacterDTO | null>;
     private destroy$ = new Subject();
@@ -23,17 +22,11 @@ export class DescriptionCharacterCardComponent implements OnInit, OnDestroy {
 
     constructor(
         private store: Store<AppCharactersState>,
-        private activatedRoute: ActivatedRoute
+        private activatedRoute: ActivatedRoute,
     ){}
 
     public ngOnInit(): void {
-        this.store.dispatch(charactersActions.loadCharacterRequest({characterID: this.activatedRoute.snapshot.params.id})),
-        this.characterDetail$ = this.store.pipe(select(charactersSelectors.getCharacterCurrentSelector)),
-        this.activatedRoute.params.pipe(takeUntil(this.destroy$)).subscribe((params: Params) => { })
-    }
-
-    public ngOnDestroy(): void {
-        this.destroy$.next();
-        this.destroy$.complete();
+        this.store.dispatch(charactersActions.loadCharacterRequest({characterID: this.activatedRoute.snapshot.params.id}));
+        this.characterDetail$ = this.store.pipe(select(charactersSelectors.getCharacterCurrentSelector));
     }
 }
