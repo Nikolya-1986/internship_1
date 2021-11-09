@@ -27,9 +27,6 @@ export class CharactersEffects {
     loadCharacter$: Observable<Action> = createEffect(() => this.actions$
         .pipe(
             ofType(charactersActions.loadCharacterRequest),
-            // ofType(charactersActions.loadActionsType.LOAD_CHARACTER_REQUEST), 
-            //Дима у меня вопрос: Я закоментировал 30 строчку, но таким способом если я делаю запрос к actions он не отрабатывает, мучался с этим долго,
-            //500 ошибка и [Object, Obgect]. Почему так происходит? Это связано потому что LOAD_CHARACTER_REQUEST объявлен через enum?
             exhaustMap((action) => this.characterCardService.getCharactersId(action.characterID)
                 .pipe(
                     map((userSuccess: CharacterDTO) => (charactersActions.loadCharacterSuccess({character: userSuccess}))),

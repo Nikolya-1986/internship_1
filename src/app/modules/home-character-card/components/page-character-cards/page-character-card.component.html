@@ -1,0 +1,14 @@
+<section class="character-card__container character-card">
+    <h1>
+        Page cartoon characters
+    </h1>
+
+    <app-list-character-cards
+        [loading]="loading$ | async"
+        [characters]="characters$ | async"
+        [error]="error$ | async"
+        (onDetailCharacter)="detailCharacter($event)"
+        >
+    </app-list-character-cards>
+
+</section>
