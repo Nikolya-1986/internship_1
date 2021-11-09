@@ -1,20 +1,39 @@
 <section class="list-cards__container list-cards">
 
-    <div class="list-cards__filter">
-        <label for="filter-gender">
-            Select gender
-        </label>
-        <select
-            id="filter-gender"
-            [(ngModel)]="filterGerder"
-            >
-            <option
-                *ngFor="let item of gerder" 
-                [value]="item"
+    <div class="list-cards__all-filters">
+        <div class="list-cards__filter">
+            <label
+                class="list-cards__label" 
+                for="filter-gender"
                 >
-                {{ item }}
-            </option>
-        </select>
+                Select gender
+            </label>
+            <select
+                id="filter-gender"
+                [(ngModel)]="filterGerder"
+                >
+                <option
+                    *ngFor="let item of gerder" 
+                    [value]="item"
+                    >
+                    {{ item }}
+                </option>
+            </select>
+        </div>
+        <div class="list-card__sort"> 
+            <label 
+                class="list-cards__label" 
+                for="sort-name"
+                >
+                Sort for name
+            </label>
+            <input
+                id="sort-name"
+                type="text"
+                placeholder="Enter name for search"
+                [(ngModel)]="searchName"
+            />
+        </div>
     </div>
 
     <div class="list-cards__list">
@@ -24,7 +43,9 @@
             </strong>
         </div>
         <ng-template #showBlock> 
-            <div *ngFor="let character of characters | filterCharacterCard: filterGerder"
+            <div *ngFor="let character of characters | 
+                sortCharacterCardName: searchName |
+                filterCharacterCard: filterGerder"
                 >
                 <app-item-character-cards
                     [character]="character"

@@ -9,12 +9,13 @@ import { CharacterDTO, Gender } from "../../../../interfaces/character.card.inte
 export class ListCharacterCartsComponent {
 
     @Input() public loading : string | any;
-    @Input() public characters: CharacterDTO[];
+    @Input() public characters!: CharacterDTO[];
     @Input() public error: string | any;
     @Output() public onDetailCharacter = new EventEmitter<number>();
 
     public filterGerder: Gender = Gender.All;
     public gerder: Gender[] = [Gender.Male, Gender.Female, Gender.All];
+    public searchName: string = '';
 
     constructor(){}
 

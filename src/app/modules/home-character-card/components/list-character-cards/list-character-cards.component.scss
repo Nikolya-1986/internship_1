@@ -1,11 +1,17 @@
 .list-cards {
 
-    &__filter {
+    &__all-filters {
+        display: flex;
+        justify-content: start;
         margin-bottom: 2rem;
 
-        label {
-            padding-right: 1rem;
+        &>div {
+            margin-right: 1.6rem;
         }
+    }
+
+    &__label {
+        padding-right: .6rem;
     }
 
     &__list {
