@@ -2,6 +2,10 @@ export interface CharactersDTO {
     results: CharacterDTO[];
 }
 
+export interface EpisodesDTO {
+    results: EpisodeDTO[]
+}
+
 export interface CharacterDTO {
     id: number;
     name: string,
@@ -11,12 +15,9 @@ export interface CharacterDTO {
     image: string,
     created: Date,
     origin: Origin,
-    location: Location
+    location: Location,
+    episode: Episode
 }
-
-// export interface Character extends CharacterDTO {
-//     id: number;
-// }
 
 export enum Gender{
     Male = 'Male',
@@ -34,3 +35,29 @@ export interface Location {
     name: string,
     url: string
 }
+
+export interface EpisodeDTO {
+    id: number,
+    name: string,
+    air_date: string,
+    episode: string,
+    characters: string[],
+    url: string,
+    created: string
+}
+
+export interface Episode {
+    id: number,
+    name: string,
+    air_date: string,
+    episode: string,
+    characters: number[],
+    url: string,
+    created: string
+}
+
+
+
+// export interface Character extends CharacterDTO {
+//     id: number;
+// }

@@ -8,7 +8,7 @@ import { CharacterDTO } from "../../../../interfaces/character.card.interface";
 })
 export class ItemCharacterCardsComponent {
 
-    @Input() public character: CharacterDTO;
+    @Input() public character!: CharacterDTO;
     @Output() public onDetailCharacter = new EventEmitter<number>();
 
     constructor() { }

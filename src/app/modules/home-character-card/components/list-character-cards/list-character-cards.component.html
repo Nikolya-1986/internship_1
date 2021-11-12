@@ -44,8 +44,9 @@
         </div>
         <ng-template #showBlock> 
             <div *ngFor="let character of characters | 
-                sortCharacterCardName: searchName |
-                filterCharacterCard: filterGerder"
+                sortCharacterNamePipe: searchName |
+                filterCharacterGenderPipe: filterGerder |
+                filterCharacterEpisodePipe: characterIds"
                 >
                 <app-item-character-cards
                     [character]="character"

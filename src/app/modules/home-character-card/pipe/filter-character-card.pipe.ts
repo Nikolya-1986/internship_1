@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from "@angular/core";
 import { CharacterDTO, Gender } from "../../../interfaces/character.card.interface";
 
 @Pipe({
-    name: 'filterCharacterCard'
+    name: 'filterCharacterGenderPipe'
 })
 export class FilterCharacterCardPipe implements PipeTransform {
 

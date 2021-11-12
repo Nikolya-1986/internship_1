@@ -2,11 +2,20 @@
     <h1>
         Page cartoon characters
     </h1>
-
+    
+    <app-episode-character-cards 
+        [activeEpisodeId]="activeEpisodeId"
+        [episodes]="episodes"
+        (episodeSelect)="onEpisodeSelect($event)"
+        >
+    </app-episode-character-cards>
+    
     <app-list-character-cards
+        
         [loading]="loading$ | async"
         [characters]="characters$ | async"
         [error]="error$ | async"
+        [characterIds]="characterIds"
         (onDetailCharacter)="detailCharacter($event)"
         >
     </app-list-character-cards>
