@@ -3,7 +3,7 @@ export interface CharactersDTO {
 }
 
 export interface EpisodesDTO {
-    results: Episode[]
+    results: EpisodeDTO[]
 }
 
 export interface CharacterDTO {
@@ -36,12 +36,22 @@ export interface Location {
     url: string
 }
 
-export interface Episode {
+export interface EpisodeDTO {
     id: number,
     name: string,
     air_date: string,
     episode: string,
     characters: string[],
+    url: string,
+    created: string
+}
+
+export interface Episode {
+    id: number,
+    name: string,
+    air_date: string,
+    episode: string,
+    characters: number[],
     url: string,
     created: string
 }

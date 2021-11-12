@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from "@angular/core";
 import { CharacterDTO } from "../../../interfaces/character.card.interface";
 
 @Pipe({
-    name: 'sortCharacterCardName'
+    name: 'sortCharacterNamePipe'
 })
 export class SortCharacterCardNamePipe implements PipeTransform {
 

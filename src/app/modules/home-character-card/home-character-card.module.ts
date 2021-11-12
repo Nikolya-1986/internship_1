@@ -11,6 +11,8 @@ import { EpisodeCharacterCardsComponent } from "./components/episode-character-c
 import { FilterCharacterCardPipe } from "./pipe/filter-character-card.pipe";
 import { SortCharacterCardNamePipe } from "./pipe/sort-characters-card-name.pipe";
 import { FilterCharacterCardEpisodePipe } from "./pipe/filter-character-card-episode.pipe";
+import { ChangeTextButtonPipe } from "./pipe/change-text-button.pipe";
+import { ButtonEpisodeComponent } from "./components/button-episode/button-episode.component";
 
 
 @NgModule({
@@ -19,9 +21,11 @@ import { FilterCharacterCardEpisodePipe } from "./pipe/filter-character-card-epi
         ListCharacterCartsComponent,
         ItemCharacterCardsComponent,
         EpisodeCharacterCardsComponent,
+        ButtonEpisodeComponent,
         FilterCharacterCardPipe,
         SortCharacterCardNamePipe,
-        FilterCharacterCardEpisodePipe
+        FilterCharacterCardEpisodePipe,
+        ChangeTextButtonPipe,
     ],
     imports: [
         CommonModule,
@@ -40,7 +44,8 @@ import { FilterCharacterCardEpisodePipe } from "./pipe/filter-character-card-epi
         RouterModule,
         FilterCharacterCardPipe,
         SortCharacterCardNamePipe,
-        FilterCharacterCardEpisodePipe
+        FilterCharacterCardEpisodePipe,
+        ChangeTextButtonPipe
     ]
 })
 export class HomeCharacterCardModule {}

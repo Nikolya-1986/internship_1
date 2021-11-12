@@ -18,7 +18,7 @@ export class CharacterCardService  {
     ){}
 
     getCharacters(): Observable<CharacterDTO[]>{
-        return this.httpClient.get<CharactersDTO>(`${this.BASE_URL}/character`).pipe(
+        return this.httpClient.get<CharactersDTO>(`${this.BASE_URL}/character/`).pipe(
             map((data) => data.results.map((item) => ({...item}))),
         )
     }
@@ -29,7 +29,23 @@ export class CharacterCardService  {
 
     getEpisodes(): Observable<Episode[]> {
         return this.httpClient.get<EpisodesDTO>(`${this.BASE_URL}/episode`).pipe(
-            map((data) => data.results),
+            map((data) => {
+                const results = data.results;
+                const episodes = results.map(episode => ({ 
+                    ...episode, 
+                    characters: episode.characters.map(character => 
+                        this.convertToId(character),
+                    ),
+                }));
+                return episodes;
+            }),
         )
+    }
+
+    private convertToId(character: string): number {
+        const urlSplit = character.split('/');
+        const lastIndex = urlSplit.length - 1;
+        const id = Number(urlSplit[lastIndex]);
+        return id;
     }
 }
