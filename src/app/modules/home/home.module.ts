@@ -3,13 +3,13 @@ import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 
-import { DescriptionCharacterCardComponent } from "../description-character-card/components/description-character-card.component";
-import { CharacterCardComponent } from "./components/character-card/character-card.component";
+import { HomeComponent } from "./home.component";
 import { CharacterListComponent } from "./components/character-list/character-list.component";
 import { CharacterItemComponent } from "./components/character-item/character-item.component";
 import { EpisodeListComponent } from "./components/episode-list/episode-list.component";
 import { EpisodeItemComponent } from "./components/episode-item/episode-item.component";
 import { CharacterFilterComponent } from "./components/character-filter/character-filter.component";
+import { DescriptionCharacterCardComponent } from "../description-character-card/components/description-character-card.component";
 
 import { ChangeTextPipe } from "./pipe/change-text.pipe";
 import { FilterGenderCharacterPipe } from "./pipe/filter-gender-character.pipe";
@@ -20,7 +20,7 @@ import { FilterNameCharacterPipe } from "./pipe/filter-name-character.pipe";
 
 @NgModule({
     declarations: [
-        CharacterCardComponent,
+        HomeComponent,
         CharacterListComponent,
         CharacterItemComponent,
         EpisodeListComponent,
@@ -38,7 +38,7 @@ import { FilterNameCharacterPipe } from "./pipe/filter-name-character.pipe";
         ReactiveFormsModule,
         RouterModule.forChild([
             {
-                path: "", component: CharacterCardComponent
+                path: "", component: HomeComponent
             },
             {
                 path: ":id", component: DescriptionCharacterCardComponent
@@ -49,4 +49,4 @@ import { FilterNameCharacterPipe } from "./pipe/filter-name-character.pipe";
         RouterModule,
     ]
 })
-export class CharacterCardModule {}
+export class HomeModule {}

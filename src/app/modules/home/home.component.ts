@@ -1,21 +1,21 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { select, Store } from "@ngrx/store";
 import { Observable } from "rxjs";
-import { Router } from "@angular/router";
 
-import { CharacterDTO, Episode, Gender } from "../../../../interfaces/character.card.interface";
-import AppCharactersState from "../../../../store/character-card/character-card.state";
-import * as charactersActions from "../../../../store/character-card/character-card.actions";
-import * as charactersSelectors from "../../../../store/character-card/character-card.selector";
-import { CharacterCardService } from "../../../../services/character-card/character-card.service";
+import { CharacterCardService } from "src/app/services/character-card/character-card.service";
+import AppCharactersState from "src/app/store/character-card/character-card.state";
+import { CharacterDTO, Episode, Gender } from "../../interfaces/character.card.interface";
+import * as charactersActions from "../../store/character-card/character-card.actions";
+import * as charactersSelectors from "../../store/character-card/character-card.selector";
 
 @Component({
-    selector: 'app-character-cards',
-    templateUrl: './character-card.component.html',
-    styleUrls: ['./character-card.component.scss']
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.scss']
 })
-export class CharacterCardComponent implements OnInit {
-    
+export class HomeComponent implements OnInit {
+
     public loading$!: Observable<string | any>;
     public characters$!: Observable<CharacterDTO[]>;
     public error$!: Observable<Error>;
