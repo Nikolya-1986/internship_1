@@ -1,0 +1,39 @@
+<section class="home__container home">
+    <h1>
+        Page cartoon characters
+    </h1>
+    
+    <app-episode-list
+        [activeEpisodeId]="activeEpisodeId"
+        [episodes]="episodes"
+        (episodeSelect)="onEpisodeSelect($event)"
+        >
+    </app-episode-list>
+        
+    <app-character-filter
+        [gender]="gender"
+        [sortAlfabet]="sortAlfabet"
+        (currentGender)="onCurrentGender($event)"
+        (currentName)="onCurrentName($event)"
+        (changeCurrentName)="onChangeCurrentName($event)"
+        >
+
+    </app-character-filter>
+
+    <app-character-list
+        [characters]="characters$ | async"
+        [error]="error$ | async"
+        [characterIds]="characterIds"
+        [filterGender]="filterGender"
+        [searchName]="searchName"
+        [filterName]="filterName"
+        (onDetailCharacter)="detailCharacter($event)"
+        >
+        <img 
+            class="home__image-loading"
+            *ngIf="loading$ | async"
+            src="assets/images/g0R9.gif"
+        />
+    </app-character-list>
+
+</section>

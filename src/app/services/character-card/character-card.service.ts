@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+import { delay, map } from "rxjs/operators";
 
 import { CharacterDTO, CharactersDTO, Episode, EpisodesDTO } from "src/app/interfaces/character.card.interface";
 
@@ -19,7 +19,7 @@ export class CharacterCardService  {
 
     getCharacters(): Observable<CharacterDTO[]>{
         return this.httpClient.get<CharactersDTO>(`${this.BASE_URL}/character/`).pipe(
-            map((data) => data.results.map((item) => ({...item}))),
+            map((data) => data.results),
         )
     }
 

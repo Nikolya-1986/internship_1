@@ -1,0 +1,25 @@
+<section class="character-item__container item-card">
+    <img [src]="character.image">
+    <div class="character-item__body">
+        <ul>
+            <li>
+                Name: {{ character.name }}
+            </li>
+            <li>
+                Status: {{ character.status }}
+            </li>
+            <li>
+                Species: {{ character.species }}
+            </li>
+            <li>
+                Gender: {{ character.gender }}
+            </li>
+        </ul>
+        <button 
+            class="character-item__detail"
+            (click)="detailCharacter()"
+            >
+            Detail
+        </button>
+    </div>
+</section>

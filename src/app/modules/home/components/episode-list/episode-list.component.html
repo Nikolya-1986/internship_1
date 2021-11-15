@@ -1,0 +1,13 @@
+<section class="episode-list__container episode-list">
+    <div 
+        *ngFor="let episode of episodes"
+        class="episode-list__buttons"
+        >
+        <app-episode-item
+            (episodeChange)="onEpisodeChange($event)"
+            [episode]="episode"
+            [activeEpisodeId]="activeEpisodeId"
+            > 
+        </app-episode-item>
+    </div>
+</section>

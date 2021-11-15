@@ -1,0 +1,61 @@
+<section class="character-filter__container character-filter">
+
+    <div class="character-filter__gender">
+        <label
+            class="character-filter__label" 
+            for="filter-gender"
+            >
+            Filter by gender
+        </label>
+        <select
+            id="filter-gender"
+            [(ngModel)]="filterGender"
+            (change)="changeGender()"
+            >
+            <option
+                *ngFor="let item of gender" 
+                [value]="item"
+                >
+                {{ item }}
+            </option>
+        </select>
+    </div>
+
+    <div class="character-filter__alphabet">
+        <label 
+            class="character-filter__label"
+            for="for-alphabet"
+            >
+            Filter by
+        </label>
+        <select 
+            id="for-alphabet"
+            [(ngModel)]="filterName"
+            (change)="changeName()"
+            >
+            <option
+                *ngFor="let name of sortAlfabet"
+                [value]="name"
+                >
+                {{ name }}
+            </option>
+        </select>
+    </div>
+
+    <div class="character-filter__name"> 
+        <label 
+            class="character-filter__label" 
+            for="sort-name"
+            >
+            Search name
+        </label>
+        <input
+            id="sort-name"
+            type="text"
+            placeholder="Enter name for search"
+            [(ngModel)]="searchName"
+            (input)="searchCurrentName()"
+        />
+    </div>
+
+</section>

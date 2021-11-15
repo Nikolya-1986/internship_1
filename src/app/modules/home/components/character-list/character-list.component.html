@@ -1,0 +1,27 @@
+<section class="character-list__container character-list">
+
+    <ng-content></ng-content>
+    <div class="character-list__item">
+        
+        <div *ngIf="error else showBlock">
+            <strong>
+                You list cartoon characters is empty
+            </strong>
+        </div>
+        <ng-template #showBlock> 
+            <div *ngFor="let character of characters | 
+                sortCharacterName: searchName |
+                filterEpisodeCharacter: characterIds |
+                filterGenderCharacter: filterGender | 
+                filterNameCharacter: filterName"
+                >
+                <app-character-item
+                    [character]="character"
+                    (onDetailCharacter)="detailCharacter($event)"
+                    >
+                </app-character-item>
+            </div>
+        </ng-template>
+    </div>
+    
+</section>
