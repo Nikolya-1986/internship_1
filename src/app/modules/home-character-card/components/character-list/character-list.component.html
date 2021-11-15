@@ -1,6 +1,8 @@
 <section class="character-list__container character-list">
 
+    <ng-content></ng-content>
     <div class="character-list__item">
+        
         <div *ngIf="error else showBlock">
             <strong>
                 You list cartoon characters is empty

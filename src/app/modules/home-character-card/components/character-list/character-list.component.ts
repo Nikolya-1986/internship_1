@@ -9,7 +9,6 @@ import { CharacterDTO, Gender } from "../../../../interfaces/character.card.inte
 export class CharacterListComponent implements OnInit {
 
     @Output() public onDetailCharacter = new EventEmitter<number>();
-    @Input() public loading : string | any;
     @Input() public characters!: CharacterDTO[];
     @Input() public error: string | any;
     @Input() public characterIds: number[];//for pipe Episode

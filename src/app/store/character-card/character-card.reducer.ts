@@ -27,10 +27,12 @@ export const CharactersReducer = createReducer (
     })),
     on(characterActions.loadCharactersSuccess, (state, action) => ({            
         ...state,
+        loading: false,
         characters: action.characters
     })),
     on(characterActions.loadCharactersFail, (state, action) => ({
         ...state,
+        loading: true,
         errorMessage: action.error
     })),
 

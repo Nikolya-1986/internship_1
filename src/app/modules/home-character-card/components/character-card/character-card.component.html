@@ -21,7 +21,6 @@
     </app-character-filter>
 
     <app-character-list
-        [loading]="loading$ | async"
         [characters]="characters$ | async"
         [error]="error$ | async"
         [characterIds]="characterIds"
@@ -30,6 +29,11 @@
         [filterName]="filterName"
         (onDetailCharacter)="detailCharacter($event)"
         >
+        <img 
+            class="character-card__image"
+            *ngIf="loading$ | async"
+            src="assets/images/g0R9.gif"
+        />
     </app-character-list>
 
 </section>

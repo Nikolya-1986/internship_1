@@ -1,1 +1,11 @@
+.character-card {
+    position: relative;
 
+    &__image {
+        position: fixed;
+        top: 45%;
+        left: 40%;
+        width: 15%;
+        height: 33%;
+    }
+}
