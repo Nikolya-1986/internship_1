@@ -8,7 +8,8 @@ export class FilterNameCharacterPipe implements PipeTransform {
 
     transform(characterDTO: CharacterDTO[], value: Object): CharacterDTO[] {
         
-        characterDTO.sort((a: any, b: any) => {
+        const characterSort = [...characterDTO];
+        characterSort.sort((a: CharacterDTO, b: CharacterDTO) => {
 
             if(value === 'Default') {
                 return a.id - b.id;
@@ -23,6 +24,6 @@ export class FilterNameCharacterPipe implements PipeTransform {
             }
             return null;
         })
-        return characterDTO;
+        return characterSort;
     }
 }

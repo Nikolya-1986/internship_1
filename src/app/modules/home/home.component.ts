@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
     public gender: Gender[] = [Gender.Male, Gender.Female, Gender.All];//show all gender
     public searchName: string = '';//pipe for fiter name
     public filterName: string = '';//pipe for fiter Alphabet
-    public valueName: string[] = ['Default', 'Alphabet(Aa-Zz)', 'Alphabet(Zz-Aa)']//value age for filter
+    public sortAlfabet: string[] = ['Default', 'Alphabet(Aa-Zz)', 'Alphabet(Zz-Aa)']//sort name alphabet for filter
     
     constructor(
         private store: Store<AppCharactersState>,

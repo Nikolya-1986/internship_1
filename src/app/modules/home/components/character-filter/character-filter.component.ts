@@ -14,20 +14,20 @@ export class CharacterFilterComponent {
     @Input() public gender: Gender[];
     @Input() public filterGender: Gender = Gender.All;
     @Input() public searchName: string;
-    @Input() public filterName: string;
-    @Input() public valueName: string[];
+    @Input() public filterName = 'Default';
+    @Input() public sortAlfabet: string[];
 
     constructor(){}
 
-    changeGender(currentSelectGender) {
+    changeGender() {
         this.currentGender.emit(this.filterGender)
     }
 
-    changeName(currentSelectName) {
+    changeName() {
         this.changeCurrentName.emit(this.filterName)
     }
 
-    searchCurrentName(currentInputName) {
+    searchCurrentName() {
         this.currentName.emit(this.searchName)
     }
 }

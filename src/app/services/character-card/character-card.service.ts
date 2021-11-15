@@ -19,8 +19,7 @@ export class CharacterCardService  {
 
     getCharacters(): Observable<CharacterDTO[]>{
         return this.httpClient.get<CharactersDTO>(`${this.BASE_URL}/character/`).pipe(
-            map((data) => data.results.map((item) => ({...item}))),
-            delay(2600),
+            map((data) => data.results),
         )
     }
 

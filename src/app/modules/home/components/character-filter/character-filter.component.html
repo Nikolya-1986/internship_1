@@ -10,7 +10,7 @@
         <select
             id="filter-gender"
             [(ngModel)]="filterGender"
-            (change)="changeGender($event)"
+            (change)="changeGender()"
             >
             <option
                 *ngFor="let item of gender" 
@@ -31,10 +31,10 @@
         <select 
             id="for-alphabet"
             [(ngModel)]="filterName"
-            (change)="changeName($event)"
+            (change)="changeName()"
             >
             <option
-                *ngFor="let name of valueName"
+                *ngFor="let name of sortAlfabet"
                 [value]="name"
                 >
                 {{ name }}
@@ -54,7 +54,7 @@
             type="text"
             placeholder="Enter name for search"
             [(ngModel)]="searchName"
-            (input)="searchCurrentName($event)"
+            (input)="searchCurrentName()"
         />
     </div>
 

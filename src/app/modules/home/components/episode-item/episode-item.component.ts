@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { Episode } from "src/app/interfaces/character.card.interface";
 
 @Component({
@@ -6,20 +6,17 @@ import { Episode } from "src/app/interfaces/character.card.interface";
     templateUrl: './episode-item.component.html',
     styleUrls: ['./episode-item.component.scss']
 })
-export class EpisodeItemComponent implements OnChanges {
+export class EpisodeItemComponent {
 
     @Output() public episodeChange = new EventEmitter<number>();
     @Input() public episode: Episode;//name button
-    @Input() public activeEpisodeId: number;
+    @Input('activeEpisodeId') set activeEpisodeId(value: number) {
+        this.isActive = this.episode.id === value;
+    }
 
     public isActive: boolean;
 
     constructor(){ }
-
-
-    public ngOnChanges() {
-        this.isActive = this.episode.id === this.activeEpisodeId;
-    }
 
     public episodeSelect(): void {
        this.episodeChange.emit(this.episode.id);
