@@ -4,28 +4,33 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 
 import { DescriptionCharacterCardComponent } from "../description-character-card/components/description-character-card.component";
-import { PageharacterCardComponent } from "./components/page-character-cards/page-character-card.component";
-import { ItemCharacterCardsComponent } from "./components/item-character-cards/item-character-cards.component";
-import { ListCharacterCartsComponent } from "./components/list-character-cards/list-character-cards.component";
-import { EpisodeCharacterCardsComponent } from "./components/episode-character-cards/episode-character-cards.component";
-import { FilterCharacterCardPipe } from "./pipe/filter-character-card.pipe";
-import { SortCharacterCardNamePipe } from "./pipe/sort-characters-card-name.pipe";
-import { FilterCharacterCardEpisodePipe } from "./pipe/filter-character-card-episode.pipe";
-import { ChangeTextButtonPipe } from "./pipe/change-text-button.pipe";
-import { ButtonEpisodeComponent } from "./components/button-episode/button-episode.component";
+import { CharacterCardComponent } from "./components/character-card/character-card.component";
+import { CharacterListComponent } from "./components/character-list/character-list.component";
+import { CharacterItemComponent } from "./components/character-item/character-item.component";
+import { EpisodeListComponent } from "./components/episode-list/episode-list.component";
+import { EpisodeItemComponent } from "./components/episode-item/episode-item.component";
+import { CharacterFilterComponent } from "./components/character-filter/character-filter.component";
+
+import { ChangeTextPipe } from "./pipe/change-text.pipe";
+import { FilterGenderCharacterPipe } from "./pipe/filter-gender-character.pipe";
+import { SearchCharacterNamePipe } from "./pipe/search-name-character.pipe";
+import { FilterEpisodeCharacterPipe } from "./pipe/filter-episode-character.pipe";
+import { FilterNameCharacterPipe } from "./pipe/filter-name-character.pipe";
 
 
 @NgModule({
     declarations: [
-        PageharacterCardComponent,
-        ListCharacterCartsComponent,
-        ItemCharacterCardsComponent,
-        EpisodeCharacterCardsComponent,
-        ButtonEpisodeComponent,
-        FilterCharacterCardPipe,
-        SortCharacterCardNamePipe,
-        FilterCharacterCardEpisodePipe,
-        ChangeTextButtonPipe,
+        CharacterCardComponent,
+        CharacterListComponent,
+        CharacterItemComponent,
+        EpisodeListComponent,
+        EpisodeItemComponent,
+        CharacterFilterComponent,
+        FilterGenderCharacterPipe,
+        SearchCharacterNamePipe,
+        FilterEpisodeCharacterPipe,
+        FilterNameCharacterPipe,
+        ChangeTextPipe,
     ],
     imports: [
         CommonModule,
@@ -33,7 +38,7 @@ import { ButtonEpisodeComponent } from "./components/button-episode/button-episo
         ReactiveFormsModule,
         RouterModule.forChild([
             {
-                path: "", component: PageharacterCardComponent
+                path: "", component: CharacterCardComponent
             },
             {
                 path: ":id", component: DescriptionCharacterCardComponent
@@ -42,10 +47,6 @@ import { ButtonEpisodeComponent } from "./components/button-episode/button-episo
     ],
     exports: [
         RouterModule,
-        FilterCharacterCardPipe,
-        SortCharacterCardNamePipe,
-        FilterCharacterCardEpisodePipe,
-        ChangeTextButtonPipe
     ]
 })
-export class HomeCharacterCardModule {}
+export class CharacterCardModule {}

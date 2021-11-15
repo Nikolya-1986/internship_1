@@ -2,9 +2,9 @@ import { Pipe, PipeTransform } from "@angular/core";
 import { CharacterDTO } from "../../../interfaces/character.card.interface";
 
 @Pipe({
-    name: 'sortCharacterNamePipe'
+    name: 'sortCharacterName'
 })
-export class SortCharacterCardNamePipe implements PipeTransform {
+export class SearchCharacterNamePipe implements PipeTransform {
 
     transform(characterDTO: CharacterDTO[], searchName: string = ''): CharacterDTO[] {
         if(searchName.trim()) {

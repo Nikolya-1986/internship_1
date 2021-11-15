@@ -2,11 +2,11 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { CharacterDTO } from "../../../../interfaces/character.card.interface";
 
 @Component({
-    selector: 'app-item-character-cards',
-    templateUrl: './item-character-cards.component.html',
-    styleUrls: ['./item-character-cards.component.scss']
+    selector: 'app-character-item',
+    templateUrl: './character-item.component.html',
+    styleUrls: ['./character-item.component.scss']
 })
-export class ItemCharacterCardsComponent {
+export class CharacterItemComponent {
 
     @Input() public character!: CharacterDTO;
     @Output() public onDetailCharacter = new EventEmitter<number>();

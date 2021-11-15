@@ -3,21 +3,33 @@
         Page cartoon characters
     </h1>
     
-    <app-episode-character-cards 
+    <app-episode-list
         [activeEpisodeId]="activeEpisodeId"
         [episodes]="episodes"
         (episodeSelect)="onEpisodeSelect($event)"
         >
-    </app-episode-character-cards>
-    
-    <app-list-character-cards
+    </app-episode-list>
         
+    <app-character-filter
+        [gender]="gender"
+        [valueName]="valueName"
+        (currentGender)="onCurrentGender($event)"
+        (currentName)="onCurrentName($event)"
+        (changeCurrentName)="onChangeCurrentName($event)"
+        >
+
+    </app-character-filter>
+
+    <app-character-list
         [loading]="loading$ | async"
         [characters]="characters$ | async"
         [error]="error$ | async"
         [characterIds]="characterIds"
+        [filterGender]="filterGender"
+        [searchName]="searchName"
+        [filterName]="filterName"
         (onDetailCharacter)="detailCharacter($event)"
         >
-    </app-list-character-cards>
+    </app-character-list>
 
 </section>

@@ -1,9 +1,9 @@
 import { Pipe, PipeTransform } from "@angular/core";
 
 @Pipe({
-    name: 'changeTextButtonPipe'
+    name: 'changeText'
 })
-export class ChangeTextButtonPipe implements PipeTransform {
+export class ChangeTextPipe implements PipeTransform {
 
     transform(text: string): string {
 

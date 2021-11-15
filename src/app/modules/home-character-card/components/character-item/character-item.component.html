@@ -1,6 +1,6 @@
-<section class="item-cards__container item-cards">
+<section class="character-item__container item-card">
     <img [src]="character.image">
-    <div class="item-cards__body">
+    <div class="character-item__body">
         <ul>
             <li>
                 Name: {{ character.name }}
@@ -16,7 +16,7 @@
             </li>
         </ul>
         <button 
-            class="item-cards__detail"
+            class="character-item__detail"
             (click)="detailCharacter()"
             >
             Detail
