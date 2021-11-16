@@ -3,22 +3,22 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { delay, map } from "rxjs/operators";
 
-import { CharacterDTO, CharactersDTO, Episode, EpisodesDTO } from "src/app/interfaces/character.card.interface";
+import { CharacterDTO, CharactersDTO, Episode, EpisodesDTO } from "src/app/interfaces/character-interface";
 
 
 @Injectable({
     providedIn: 'root'
 })
-export class CharacterCardService  {
+export class CharacterService  {
 
-    private readonly BASE_URL =  "https://rickandmortyapi.com/api/"
+    private readonly BASE_URL =  "https://rickandmortyapi.com/api"
 
     constructor(
         private httpClient: HttpClient
     ){}
 
     getCharacters(): Observable<CharacterDTO[]>{
-        return this.httpClient.get<CharactersDTO>(`${this.BASE_URL}/character/`).pipe(
+        return this.httpClient.get<CharactersDTO>(`${this.BASE_URL}/character`).pipe(
             map((data) => data.results),
         )
     }

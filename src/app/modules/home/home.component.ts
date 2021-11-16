@@ -3,9 +3,9 @@ import { Router } from "@angular/router";
 import { select, Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 
-import { CharacterCardService } from "src/app/services/character-card/character-card.service";
+import { CharacterService } from "src/app/services/character/character.service";
 import AppCharactersState from "src/app/store/character-card/character-card.state";
-import { CharacterDTO, Episode, Gender } from "../../interfaces/character.card.interface";
+import { CharacterDTO, Episode, Gender } from "../../interfaces/character-interface";
 import * as charactersActions from "../../store/character-card/character-card.actions";
 import * as charactersSelectors from "../../store/character-card/character-card.selector";
 
@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
     
     constructor(
         private store: Store<AppCharactersState>,
-        private characterCardService: CharacterCardService,
+        private characterService: CharacterService,
         private router: Router,
     ){}
 
@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit {
         this.characters$ = this.store.pipe(select(charactersSelectors.getCharactersListSelector));
         this.error$ = this.store.pipe(select(charactersSelectors.getCharactersFailSelector));
     
-        this.characterCardService.getEpisodes().subscribe((episodes) => {
+        this.characterService.getEpisodes().subscribe((episodes) => {
             this.activeEpisodeId = episodes[0].id;
             this.characterIds = episodes[0].characters;
             this.episodes = episodes;
@@ -68,6 +68,6 @@ export class HomeComponent implements OnInit {
     }
 
     public detailCharacter(id: number) {
-        this.router.navigate(['/', id]);
+        this.router.navigate(['description', id]);
     }
 }

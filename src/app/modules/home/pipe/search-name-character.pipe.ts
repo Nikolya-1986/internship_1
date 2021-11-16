@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from "@angular/core";
-import { CharacterDTO } from "../../../interfaces/character.card.interface";
+import { CharacterDTO } from "../../../interfaces/character-interface";
 
 @Pipe({
     name: 'sortCharacterName'

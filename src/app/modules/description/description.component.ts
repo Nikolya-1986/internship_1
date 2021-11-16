@@ -3,17 +3,17 @@ import { ActivatedRoute } from "@angular/router";
 import { select, Store } from "@ngrx/store";
 import { Observable, Subject } from "rxjs";
 
-import { CharacterDTO } from "../../../interfaces/character.card.interface";
-import * as charactersActions from "../../../store/character-card/character-card.actions";
-import *as charactersSelectors from "../../../store/character-card/character-card.selector";
-import AppCharactersState from "../../../store/character-card/character-card.state";
+import { CharacterDTO } from "../../interfaces/character-interface";
+import * as charactersActions from "../../store/character-card/character-card.actions";
+import *as charactersSelectors from "../../store/character-card/character-card.selector";
+import AppCharactersState from "../../store/character-card/character-card.state";
 
 @Component({
     selector: 'app-description-character',
-    templateUrl: './description-character-card.component.html',
-    styleUrls: ['./description-character-card.component.scss']
+    templateUrl: './description.component.html',
+    styleUrls: ['./description.component.scss']
 })
-export class DescriptionCharacterCardComponent implements OnInit {
+export class DescriptionComponent implements OnInit {
 
     public characterDetail$!: Observable<CharacterDTO | null>;
     private destroy$ = new Subject();

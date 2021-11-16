@@ -1,5 +1,5 @@
 import { createAction, props, union } from "@ngrx/store";
-import { CharacterDTO } from "../../interfaces/character.card.interface";
+import { CharacterDTO } from "../../interfaces/character-interface";
 
 export enum loadActionsType {
     LOAD_CHARACTERS_REQUEST = '[CHARACTERS] Load Characters Request',

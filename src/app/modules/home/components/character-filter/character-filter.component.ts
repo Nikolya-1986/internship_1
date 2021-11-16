@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter, Input } from "@angular/core";
-import { Gender } from "../../../../interfaces/character.card.interface";
+import { Gender } from "../../../../interfaces/character-interface";
 
 @Component({
     selector: 'app-character-filter',

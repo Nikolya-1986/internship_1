@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from "@angular/core";
-import { CharacterDTO, Gender } from "../../../interfaces/character.card.interface";
+import { CharacterDTO, Gender } from "../../../interfaces/character-interface";
 
 @Pipe({
     name: 'filterGenderCharacter'

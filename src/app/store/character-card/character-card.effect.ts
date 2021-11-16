@@ -4,9 +4,9 @@ import { map, tap, catchError, exhaustMap } from 'rxjs/operators';
 import { Action } from "@ngrx/store";
 import { Observable, of } from "rxjs";
 
-import { CharacterDTO } from "../../interfaces/character.card.interface";
+import { CharacterDTO } from "../../interfaces/character-interface";
 import * as charactersActions from "./character-card.actions";
-import { CharacterCardService } from "../../services/character-card/character-card.service";
+import { CharacterService } from "../../services/character/character.service";
 
 @Injectable()
 export class CharactersEffects {
@@ -14,7 +14,7 @@ export class CharactersEffects {
     loadCharacters$: Observable<Action> = createEffect(() => this.actions$
         .pipe(
             ofType(charactersActions.loadActionsType.LOAD_CHARACTERS_REQUEST),
-            exhaustMap(() => this.characterCardService.getCharacters()
+            exhaustMap(() => this.characterService.getCharacters()
                 .pipe(
                     map((usersSuccess: CharacterDTO[]) => (charactersActions.loadCharactersSuccess({characters: usersSuccess }))),
                     tap((action) => console.log("Users:", action.characters)),
@@ -27,7 +27,7 @@ export class CharactersEffects {
     loadCharacter$: Observable<Action> = createEffect(() => this.actions$
         .pipe(
             ofType(charactersActions.loadCharacterRequest),
-            exhaustMap((action) => this.characterCardService.getCharactersId(action.characterID)
+            exhaustMap((action) => this.characterService.getCharactersId(action.characterID)
                 .pipe(
                     map((userSuccess: CharacterDTO) => (charactersActions.loadCharacterSuccess({character: userSuccess}))),
                     tap((action) => console.log("User:", action.character)),
@@ -39,6 +39,6 @@ export class CharactersEffects {
 
     constructor(
         private actions$: Actions,
-        private characterCardService: CharacterCardService
+        private characterService: CharacterService
     ){}
 }

@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
-import { CharacterDTO } from "../../../../interfaces/character.card.interface";
+import { CharacterDTO } from "../../../../interfaces/character-interface";
 
 @Component({
     selector: 'app-character-item',

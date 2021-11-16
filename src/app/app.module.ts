@@ -13,6 +13,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { reducerUsers } from './store/character-card/character-card.selector';
 import { CharactersEffects } from './store/character-card/character-card.effect';
+import { AuthGuard } from './guard/auth-guard';
 
 
 @NgModule({
@@ -31,7 +32,7 @@ import { CharactersEffects } from './store/character-card/character-card.effect'
     EffectsModule.forRoot([CharactersEffects]),
     StoreRouterConnectingModule.forRoot()
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

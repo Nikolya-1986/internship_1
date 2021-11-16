@@ -9,7 +9,6 @@ import { CharacterItemComponent } from "./components/character-item/character-it
 import { EpisodeListComponent } from "./components/episode-list/episode-list.component";
 import { EpisodeItemComponent } from "./components/episode-item/episode-item.component";
 import { CharacterFilterComponent } from "./components/character-filter/character-filter.component";
-import { DescriptionCharacterCardComponent } from "../description-character-card/components/description-character-card.component";
 
 import { ChangeTextPipe } from "./pipe/change-text.pipe";
 import { FilterGenderCharacterPipe } from "./pipe/filter-gender-character.pipe";
@@ -39,9 +38,6 @@ import { FilterNameCharacterPipe } from "./pipe/filter-name-character.pipe";
         RouterModule.forChild([
             {
                 path: "", component: HomeComponent
-            },
-            {
-                path: ":id", component: DescriptionCharacterCardComponent
             }
         ])
     ],
