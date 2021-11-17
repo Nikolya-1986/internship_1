@@ -6,27 +6,22 @@ import { AuthServise } from "../modules/login/services/auth/auth.servise";
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-    private token = localStorage.getItem('token');
-
     constructor(
         private authServise: AuthServise,
         private router: Router
     ) {}
 
-    canActivate(
-        route: ActivatedRouteSnapshot,
-        state: RouterStateSnapshot
-    ): Observable<boolean> | Promise<boolean> {
-        return this.authServise.isAuthenticated().then(
-            (authenticated: boolean) => {
-                if(authenticated) {
-                    return true
-                } else {
-                    this.router.navigate([""]);
-                    return false
-                }
-            }
 
-        )
+    canActivate(
+        next: ActivatedRouteSnapshot,
+        state: RouterStateSnapshot
+    ): Observable<boolean> | Promise<boolean> | boolean {
+      
+        if(this.authServise.isAuthenticated) {
+          return true;
+        }else {
+          this.router.navigate(["login"]);
+          return false;
+        }
     }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+
 import { AuthServise } from "./services/auth/auth.servise";
 import { passwordValidator } from "./validators/password-validator";
 
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
 
     constructor(
         private formBilder: FormBuilder,
-        private authServise: AuthServise
+        private authServise: AuthServise,
     ){}
 
     public ngOnInit(): void {
@@ -25,7 +26,7 @@ export class LoginComponent implements OnInit {
                 [
                     Validators.required,
                     Validators.minLength(4),
-                    Validators.maxLength(10)
+                    Validators.maxLength(10),
                 ]
             ],
             password: ["",
@@ -33,23 +34,22 @@ export class LoginComponent implements OnInit {
                     Validators.required,
                     Validators.minLength(8),
                     Validators.maxLength(16),
-                    passwordValidator
+                    passwordValidator,
                 ]
             ]
         })
     };
-
-    showPassword() {
+    
+    public showPassword(): void {
         this.isShowPassword = !this.isShowPassword;
         this.isShowEye = !this.isShowEye;
     }
 
-    login(){
-        if(this.formLogin.invalid) {
-            return
+    public login(): void {
+        if(this.formLogin.valid) {
+            const userLogin = this.formLogin.getRawValue();
+            this.authServise.sendToken(String(Math.floor(Math.random() * 100) + 1));
+            this.authServise.login(userLogin);
         }
-
-        const userLogin = this.formLogin.getRawValue();
-        this.authServise.isAuthenticated();
     }
 }

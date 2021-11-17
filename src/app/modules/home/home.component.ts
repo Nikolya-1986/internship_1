@@ -50,24 +50,24 @@ export class HomeComponent implements OnInit {
     }
 
 
-    public onEpisodeSelect(episodeId: number) {
+    public onEpisodeSelect(episodeId: number): void {
         this.activeEpisodeId = episodeId;
         this.characterIds = this.episodes.find(episode => episode.id === episodeId).characters;
     }
 
-    public onCurrentGender(currentSelectGender) {
+    public onCurrentGender(currentSelectGender): void {
         this.filterGender = currentSelectGender;
     }
 
-    public onChangeCurrentName(currentSelectName) {
+    public onChangeCurrentName(currentSelectName): void {
         this.filterName = currentSelectName;
     }
 
-    public onCurrentName(currentInputName) {
+    public onCurrentName(currentInputName): void {
         this.searchName = currentInputName;
     }
 
-    public detailCharacter(id: number) {
+    public detailCharacter(id: number): void {
         this.router.navigate(['description', id]);
     }
 }

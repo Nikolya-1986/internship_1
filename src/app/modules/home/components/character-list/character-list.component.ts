@@ -22,7 +22,7 @@ export class CharacterListComponent implements OnInit {
         
     }
 
-    public detailCharacter(id: number) {
+    public detailCharacter(id: number): void {
         this.onDetailCharacter.emit(id);
     }
 }

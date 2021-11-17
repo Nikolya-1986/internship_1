@@ -13,4 +13,8 @@ export class NavComponent {
     constructor(
         public authServise: AuthServise
     ){}
+
+    public logout(): void {
+        this.authServise.logout()
+    }
 }

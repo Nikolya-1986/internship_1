@@ -1,37 +1,36 @@
 import { Injectable } from "@angular/core";
-import { UserDTO } from "src/app/modules/login/interfaces/user-interface";
+import { Router } from "@angular/router";
+import { UserDTO } from "../../interfaces/user-interface";
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthServise {
 
-    // private token = 'token-for-user';
+    constructor(
+        private router: Router
+    ){}
 
-    // login(userLogin): void {
-    //     if(userLogin) {
-    //         localStorage.setItem('token', this.token)
-    //     }
-    // }
-
-    private token: boolean;
-
-    public isAuthenticated() {
-        const userToken = new Promise(
-            (resolve, reject) => {
-                setTimeout(() => {
-                    resolve(this.token)
-                }, 0)
-            }
-        )
-        return userToken;
+    public sendToken(token: string): void{
+        localStorage.setItem("userToken", token);
     }
 
-    public login() {
-        this.token = true;
+    public getToken(): string {
+        return localStorage.getItem("userToken");
     }
 
-    public logout() {
-        this.token = false;
+    public get isAuthenticated(): boolean {
+        return (localStorage.getItem("userToken") !== null );
+    }
+
+    public login(userLogin: UserDTO): boolean {
+        console.log("User login:", userLogin);
+        this.router.navigate([""]);
+        return this.getToken() !== null;
+    }
+
+    public logout(): void {
+        localStorage.removeItem("userToken");
+        this.router.navigate(["/login"]);
     }
 }
