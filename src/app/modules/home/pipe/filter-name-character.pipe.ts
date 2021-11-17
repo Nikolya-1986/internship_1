@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from "@angular/core";
-import { CharacterDTO } from "src/app/interfaces/character.card.interface";
+import { CharacterDTO } from "src/app/interfaces/character-interface";
 
 @Pipe({
     name: 'filterNameCharacter'

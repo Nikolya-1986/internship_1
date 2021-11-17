@@ -4,7 +4,9 @@
 :root {
   --light-color: #ffffff;
   --light-color-2: #cececeb6;
-  --primary-color: #ff0019;
+  --primary-color-1: #ff0019;
+  --primary-color-2: #03a9f4;
+  --primary-color-3: #3cff00;
   --dark-color: #000000;
   --transparent-color: rgba(0, 0, 0, 0.582);
 }
@@ -79,4 +81,12 @@ img {
 
 .content {
   padding: 0 25px;
+}
+
+.active a {
+  color: var(--primary-color-1);
+}
+
+.label {
+  padding-right: .6rem;
 }

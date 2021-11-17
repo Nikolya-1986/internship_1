@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { Episode } from "src/app/interfaces/character.card.interface";
+import { Episode } from "src/app/interfaces/character-interface";
 
 @Component({
     selector: 'app-episode-item',

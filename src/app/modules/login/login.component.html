@@ -1,0 +1,116 @@
+<section class="login__container login">
+    <h1>
+        Page login
+    </h1>
+
+    <form 
+        class="login__form"
+        [formGroup]="formLogin"
+        (submit)="login()"
+        ngNativeValidate
+        >
+
+        <div class="login__name input-box">
+            <input
+                class="input"
+                id="for-name"
+                type="text"
+                autocomplete="off"
+                required
+                formControlName="name"
+            />
+            <label
+                class="label" 
+                for="for-name"
+                >
+                Name
+            </label>
+
+            <div 
+                class="validation"
+                *ngIf="formLogin.controls['name'].invalid 
+                    && formLogin.controls['name'].touched"
+                >
+                <small 
+                    class="error"
+                    *ngIf="formLogin.controls['name'].errors.required"
+                    >
+                    Please enter your name. This field should not be empty!!!
+                </small>
+                <small 
+                    class="error"
+                    *ngIf="formLogin.controls['name'].errors.minlength"
+                    >
+                    The length must be at least {{ formLogin.controls['name'].errors.minlength.requiredLength }} characters!
+                </small>
+                <small
+                    class="error"
+                    *ngIf="formLogin.controls['name'].errors.maxlength"
+                    >
+                    The length not must be more than {{ formLogin.controls['name'].errors.maxlength.requiredLength }} characters!
+                </small>
+            </div>
+        </div>
+
+        <div class="login__password input-box">
+            <input
+                class="input"
+                id="for-password"
+                [type]="isShowPassword ? 'text' : 'password'"
+                autocomplete="off"
+                required
+                formControlName="password"
+            />
+            <label 
+                class="label" 
+                for="for-password"
+                >
+                Password
+            </label>
+            <a 
+                class="login__control"
+                [ngClass]="isShowEye ? 'control': 'no-control'"
+                (click)="showPassword()"
+                > 
+
+            </a>
+            <div 
+                class="validation"
+                *ngIf="formLogin.controls['password'].invalid 
+                    && formLogin.controls['password'].touched"
+                >
+                <small
+                    class="error"
+                    *ngIf="formLogin.controls['password'].errors.required"
+                    >
+                    Please enter your password. This field should not be empty!!!
+                </small>
+                <small
+                    class="error"
+                    *ngIf="formLogin.controls['password'].errors.minlength"
+                    >
+                    The length must be at least {{ formLogin.controls['password'].errors.minlength.requiredLength }} characters!
+                </small>
+                <small
+                    class="error"
+                    *ngIf="formLogin.controls['password'].errors.maxlength"
+                    >
+                    The length not must be more than {{ formLogin.controls['password'].errors.maxlength.requiredLength }} characters!
+                </small>
+                <small
+                    class="error"
+                    *ngIf="formLogin.controls['password'].errors.passwordError"
+                    >
+                    At least one uppercase letter, one lowercase letter, one number and one special character!
+                </small>
+            </div>
+        </div>
+
+        <input 
+            type="submit" 
+            value="Login"
+            [disabled]="formLogin.invalid || formLogin.pending"
+        />
+
+    </form>
+</section>

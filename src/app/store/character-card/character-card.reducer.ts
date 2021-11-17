@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 
-import { CharacterDTO } from "../../interfaces/character.card.interface";
+import { CharacterDTO } from "../../interfaces/character-interface";
 import *as characterActions from "./character-card.actions";
 
 export interface CharactersState {

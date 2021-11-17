@@ -8,12 +8,29 @@
         <ul>
             <li 
                 routerLinkActive="active"
-                [routerLinkActiveOptions]="{exact:true}"
+                [routerLinkActiveOptions]="{exact: true}"
+                *ngIf="!authServise.isAuthenticated; else homeBlock"
                 >
-                <a routerLink="">
-                    Home
+                <a routerLink="/login">
+                    Login
                 </a>
             </li>
+            <ng-template #homeBlock>
+                <li routerLinkActive="active"
+                    >
+                    <a routerLink="">
+                        Home
+                    </a>
+                </li>
+                <li 
+                    routerLinkActive="active"
+                    >
+                    <a (click)="logout()">
+                        Logout
+                    </a>    
+                </li>
+            </ng-template>
+
         </ul>
     </nav>
 </section>

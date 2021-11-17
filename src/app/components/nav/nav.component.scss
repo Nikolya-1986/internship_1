@@ -18,17 +18,11 @@
             li {
                 padding: 0 10px;
                 font-size: 2rem;
+
+                a {
+                    cursor: pointer;
+                }
             }
         }
     }
-
-}
-
-h1 {
-    text-align: center;
-    color: var(--primary-color);
-}
-
-.active a {
-    color: var(--primary-color);
 }

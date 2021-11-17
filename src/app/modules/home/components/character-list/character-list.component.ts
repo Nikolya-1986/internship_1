@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, } from "@angular/core";
-import { CharacterDTO, Gender } from "../../../../interfaces/character.card.interface";
+import { CharacterDTO, Gender } from "../../../../interfaces/character-interface";
 
 @Component({
     selector: 'app-character-list',
@@ -22,7 +22,7 @@ export class CharacterListComponent implements OnInit {
         
     }
 
-    public detailCharacter(id: number) {
+    public detailCharacter(id: number): void {
         this.onDetailCharacter.emit(id);
     }
 }

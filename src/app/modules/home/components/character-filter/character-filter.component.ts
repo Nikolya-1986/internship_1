@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter, Input } from "@angular/core";
-import { Gender } from "../../../../interfaces/character.card.interface";
+import { Gender } from "../../../../interfaces/character-interface";
 
 @Component({
     selector: 'app-character-filter',
@@ -19,15 +19,15 @@ export class CharacterFilterComponent {
 
     constructor(){}
 
-    changeGender() {
+    public changeGender(): void {
         this.currentGender.emit(this.filterGender)
     }
 
-    changeName() {
+    public changeName(): void {
         this.changeCurrentName.emit(this.filterName)
     }
 
-    searchCurrentName() {
+    public searchCurrentName(): void {
         this.currentName.emit(this.searchName)
     }
 }

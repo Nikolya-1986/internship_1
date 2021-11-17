@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter, Input } from "@angular/core";
-import { Episode } from "../../../../interfaces/character.card.interface";
+import { Episode } from "../../../../interfaces/character-interface";
 
 @Component({
     selector: 'app-episode-list',
@@ -8,13 +8,13 @@ import { Episode } from "../../../../interfaces/character.card.interface";
 })
 export class EpisodeListComponent {
 
-    @Output() episodeSelect = new EventEmitter<number>();
+    @Output() public episodeSelect = new EventEmitter<number>();
     @Input() public episodes: Episode[];//array with name episode (button name)
     @Input() public activeEpisodeId: number;
     
     constructor(){}
     
-    public onEpisodeChange(id: number) {
+    public onEpisodeChange(id: number): void {
         this.episodeSelect.emit(id);
     }
 }
