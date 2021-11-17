@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Provider } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -14,7 +14,13 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { reducerUsers } from './store/character-card/character-card.selector';
 import { CharactersEffects } from './store/character-card/character-card.effect';
 import { AuthGuard } from './guard/auth-guard';
+import { AuthInterceptor } from './interceptors/auth-interceptor';
 
+const INTERSEPTOR: Provider = {
+  provide: HTTP_INTERCEPTORS,
+  multi: true,
+  useClass: AuthInterceptor
+};
 
 @NgModule({
   declarations: [
@@ -32,7 +38,7 @@ import { AuthGuard } from './guard/auth-guard';
     EffectsModule.forRoot([CharactersEffects]),
     StoreRouterConnectingModule.forRoot()
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard, INTERSEPTOR],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

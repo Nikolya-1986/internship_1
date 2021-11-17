@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
 
 import { AuthServise } from "./services/auth/auth.servise";
 import { passwordValidator } from "./validators/password-validator";
@@ -18,6 +19,7 @@ export class LoginComponent implements OnInit {
     constructor(
         private formBilder: FormBuilder,
         private authServise: AuthServise,
+        private router: Router
     ){}
 
     public ngOnInit(): void {
@@ -50,6 +52,7 @@ export class LoginComponent implements OnInit {
             const userLogin = this.formLogin.getRawValue();
             this.authServise.sendToken(String(Math.floor(Math.random() * 100) + 1));
             this.authServise.login(userLogin);
+            this.router.navigate([""]);
         }
     }
 }
