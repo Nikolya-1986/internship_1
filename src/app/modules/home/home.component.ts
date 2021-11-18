@@ -5,7 +5,7 @@ import { Observable } from "rxjs";
 
 import { CharacterService } from "src/app/services/character/character.service";
 import AppCharactersState from "src/app/store/character-card/character-card.state";
-import { CharacterDTO, Episode, Gender } from "../../interfaces/character-interface";
+import { CharacterDTO, Episode, Gender, LocationDTO } from "../../interfaces/character-interface";
 import * as charactersActions from "../../store/character-card/character-card.actions";
 import * as charactersSelectors from "../../store/character-card/character-card.selector";
 
@@ -17,9 +17,8 @@ import * as charactersSelectors from "../../store/character-card/character-card.
 export class HomeComponent implements OnInit {
 
     public loading$!: Observable<string | any>;
-    public characters$!: Observable<CharacterDTO[]>;
+    public characters$!: Observable<CharacterDTO<LocationDTO>[]>;
     public error$!: Observable<Error>;
-
     public episodes: Episode[] = [];//array episode from server
     public episodeCharacter: Episode | any;//current episodeID
     public activeEpisodeId: number;//active episode ID

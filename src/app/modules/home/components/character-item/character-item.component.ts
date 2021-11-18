@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
-import { CharacterDTO } from "../../../../interfaces/character-interface";
+import { CharacterDTO, LocationDTO } from "../../../../interfaces/character-interface";
 
 @Component({
     selector: 'app-character-item',
@@ -8,7 +8,7 @@ import { CharacterDTO } from "../../../../interfaces/character-interface";
 })
 export class CharacterItemComponent {
 
-    @Input() public character!: CharacterDTO;
+    @Input() public character!: CharacterDTO<LocationDTO>;
     @Output() public onDetailCharacter = new EventEmitter<number>();
 
     constructor() { }

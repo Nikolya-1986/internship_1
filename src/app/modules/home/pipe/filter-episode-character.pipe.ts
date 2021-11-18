@@ -1,12 +1,12 @@
 import { Pipe, PipeTransform } from "@angular/core";
-import { CharacterDTO } from "../../../interfaces/character-interface";
+import { CharacterDTO, LocationDTO } from "../../../interfaces/character-interface";
 
 @Pipe({
     name: 'filterEpisodeCharacter'
 })
 export class FilterEpisodeCharacterPipe implements PipeTransform { 
 
-    transform(characters: CharacterDTO[], characterIds: number[]): CharacterDTO[] {
+    transform(characters: CharacterDTO<LocationDTO>[], characterIds: number[]): CharacterDTO<LocationDTO>[] {
         
         if(characterIds) {
                         

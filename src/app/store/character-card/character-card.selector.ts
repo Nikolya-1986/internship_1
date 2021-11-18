@@ -19,9 +19,9 @@ export const getCharactersFailSelector = createSelector (
     (state: CharactersState) => state.errorMessage
 );
 
-export const getCharacterCurrentSelector = createSelector (
+export const getCharacterCurrentSelector = (id: number) => createSelector (
     getCharactersFutureSelector,
-    (state: CharactersState) => state.selectCharacter
+    (state: CharactersState) => state.characters.find(character => character.id === id),
 );
 
 export const reducerUsers: ActionReducerMap<AppCharactersState> = {

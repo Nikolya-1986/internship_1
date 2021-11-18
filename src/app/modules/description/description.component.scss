@@ -2,9 +2,21 @@
 
     &__image {
         width: 35%;
+        margin-right: 2rem;
     }
 
     button {
         margin: 1rem 0;
+    }
+
+    &__item {
+        display: flex;
+
+        ul {
+
+            li {
+                margin-bottom: 1rem;
+            }
+        }
     }
 }

@@ -1,12 +1,12 @@
 import { Pipe, PipeTransform } from "@angular/core";
-import { CharacterDTO, Gender } from "../../../interfaces/character-interface";
+import { CharacterDTO, Gender, LocationDTO } from "../../../interfaces/character-interface";
 
 @Pipe({
     name: 'filterGenderCharacter'
 })
 export class FilterGenderCharacterPipe implements PipeTransform {
 
-    transform(characterDTO: CharacterDTO[], gender: Gender): CharacterDTO[] { 
+    transform(characterDTO: CharacterDTO<LocationDTO>[], gender: Gender): CharacterDTO<LocationDTO>[] { 
         return gender === Gender.All ? characterDTO : characterDTO.filter(item => item.gender === gender);
     }
 }
