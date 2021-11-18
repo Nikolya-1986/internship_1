@@ -1,5 +1,5 @@
 import { createAction, props, union } from "@ngrx/store";
-import { CharacterDTO } from "../../interfaces/character-interface";
+import { CharacterDTO, LocationDTO } from "../../interfaces/character-interface";
 
 export enum loadActionsType {
     LOAD_CHARACTERS_REQUEST = '[CHARACTERS] Load Characters Request',
@@ -16,7 +16,7 @@ export const loadCharactersRequest = createAction (
 
 export const loadCharactersSuccess = createAction (
     loadActionsType.LOAD_CHARACTERS_SUCCESS,
-    props<{characters: CharacterDTO[]}>()
+    props<{characters: CharacterDTO<LocationDTO>[]}>()
 );
 
 export const loadCharactersFail = createAction (
@@ -24,28 +24,11 @@ export const loadCharactersFail = createAction (
     props<{error: string | any}>()
 );
 
-export const loadCharacterRequest = createAction (
-    loadActionsType.LOAD_CHARACTER_REQUEST,
-    props<{characterID: number}>()
-);
-
-export const loadCharacterSuccess = createAction (
-    loadActionsType.LOAD_CHARACTER_SUCCESS,
-    props<{character: CharacterDTO}>()
-);
-
-export const loadCharacterFail = createAction (
-    loadActionsType.LOAD_CHARACTER_FAIL,
-    props<{error: string | any}>()
-);
 
 const allCharactersActions = union({
     loadCharactersRequest,
     loadCharactersSuccess,
     loadCharactersFail,
-    loadCharacterRequest,
-    loadCharacterSuccess,
-    loadCharacterFail,
 })
 
 export type CharactersActions = typeof allCharactersActions

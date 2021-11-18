@@ -1,9 +1,9 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { delay, map } from "rxjs/operators";
+import { map } from "rxjs/operators";
 
-import { CharacterDTO, CharactersDTO, Episode, EpisodesDTO } from "src/app/interfaces/character-interface";
+import { CharacterDTO, CharactersDTO, Episode, EpisodesDTO, LocationDTO, Location } from "../../interfaces/character-interface";
 
 
 @Injectable({
@@ -17,22 +17,26 @@ export class CharacterService  {
         private httpClient: HttpClient
     ){}
 
-    getCharacters(): Observable<CharacterDTO[]>{
+    public getCharacters(): Observable<CharacterDTO<LocationDTO>[]> {
         return this.httpClient.get<CharactersDTO>(`${this.BASE_URL}/character`).pipe(
             map((data) => data.results),
         )
-    }
+    };
 
-    getCharactersId(id: number): Observable<CharacterDTO>{
-        return this.httpClient.get<CharacterDTO>(`${this.BASE_URL}/character/${id}`)
-    }
+    public getCharactersId(id: number): Observable<CharacterDTO<LocationDTO>> {
+        return this.httpClient.get<CharacterDTO<LocationDTO>>(`${this.BASE_URL}/character/${id}`)
+    };
 
-    getEpisodes(): Observable<Episode[]> {
+    public getLocation(url: string): Observable<Location> {
+        return this.httpClient.get<Location>(url);
+    };
+
+    public getEpisodes(): Observable<Episode[]> {
         return this.httpClient.get<EpisodesDTO>(`${this.BASE_URL}/episode`).pipe(
             map((data) => {
                 const results = data.results;
                 const episodes = results.map(episode => ({ 
-                    ...episode, 
+                    ...episode,
                     characters: episode.characters.map(character => 
                         this.convertToId(character),
                     ),
@@ -40,7 +44,7 @@ export class CharacterService  {
                 return episodes;
             }),
         )
-    }
+    };
 
     private convertToId(character: string): number {
         const urlSplit = character.split('/');

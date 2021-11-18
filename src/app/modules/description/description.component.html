@@ -9,51 +9,41 @@
     <button routerLink="/">
         Back characters
     </button>
-    <table class="table table-hover table-dark table-bordered table-sm text-center">
-        <thead>
-            <tr class="bg-primary">
-                <th *ngFor="let column of columns; let ind = index">
-                    {{ column }}
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="bg-secondary">
-                <td>
-                    {{ characterDetails.id }}
-                </td>
-                <td>
-                    {{ characterDetails.name }}
-                </td>
-                <td>
-                    {{ characterDetails.status }}
-                </td>
-                <td>
-                    {{ characterDetails.species }}
-                </td>
-                <td>
-                    {{ characterDetails.gender }}
-                </td>
-                <td>
-                    {{ characterDetails.created }}
-                </td>
-                <td>
-                    {{ characterDetails.origin.name }}
-                </td>
-                <td>
-                    {{ characterDetails.origin.url }}
-                </td>
-                <td>
-                    {{ characterDetails.location.name }}
-                </td>
-                <td>
-                    {{ characterDetails.location.url }}
-                </td>
-            </tr>
-        </tbody>
-    </table>
 
-    <div class="character-detail__image">
-        <img [src]="characterDetails.image">
+    <div class="character-detail__item">
+        <div class="character-detail__image">
+            <img [src]="characterDetails.image">
+        </div>
+
+        <ul>
+            <li>
+                Name: {{ characterDetails.name }}
+            </li>
+            <li>
+                Status: {{ characterDetails.status }}
+            </li>
+            <li>
+                Species: {{ characterDetails.species }}
+            </li>
+            <li>
+                Gender: {{ characterDetails.gender }}
+            </li>
+            <li>
+                Created: {{ characterDetails.created }}
+            </li>
+            <li>
+                Origin name: {{ characterDetails.origin.name }}
+            </li>
+            <li>
+                Location name: {{ characterDetails.location.name }}
+            </li>
+            <li>
+                Location type: {{ characterDetails.location.type }}
+            </li>
+            <li>
+                Location dimension: {{ characterDetails.location.dimension }}
+            </li>
+        </ul>
     </div>
+   
 </section>

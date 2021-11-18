@@ -1,13 +1,12 @@
 .character-item{
     margin-bottom: 1.5rem;
-
-    border: 2px solid var(--dark-color);
+    border: 2px solid var(--dark-color-1);
 
     &__body {
         padding: 1rem;
     }
 
     &__detail {
-        margin-bottom: 1rem;
+        cursor: pointer;
     }
 }

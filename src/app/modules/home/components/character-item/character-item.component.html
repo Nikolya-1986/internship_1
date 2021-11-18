@@ -1,5 +1,9 @@
-<section class="character-item__container item-card">
-    <img [src]="character.image">
+<section class="character-item__container character-item">
+    <img 
+        [src]="character.image" 
+        (click)="detailCharacter()"
+        class="character-item__detail"
+        />
     <div class="character-item__body">
         <ul>
             <li>
@@ -15,11 +19,5 @@
                 Gender: {{ character.gender }}
             </li>
         </ul>
-        <button 
-            class="character-item__detail"
-            (click)="detailCharacter()"
-            >
-            Detail
-        </button>
     </div>
 </section>

@@ -1,15 +1,15 @@
 import { Pipe, PipeTransform } from "@angular/core";
-import { CharacterDTO } from "src/app/interfaces/character-interface";
+import { CharacterDTO, LocationDTO } from "src/app/interfaces/character-interface";
 
 @Pipe({
     name: 'filterNameCharacter'
 })
 export class FilterNameCharacterPipe implements PipeTransform {
 
-    transform(characterDTO: CharacterDTO[], value: Object): CharacterDTO[] {
+    transform(characterDTO: CharacterDTO<LocationDTO>[], value: Object): CharacterDTO<LocationDTO>[] {
         
         const characterSort = [...characterDTO];
-        characterSort.sort((a: CharacterDTO, b: CharacterDTO) => {
+        characterSort.sort((a: CharacterDTO<LocationDTO>, b: CharacterDTO<LocationDTO>) => {
 
             if(value === 'Default') {
                 return a.id - b.id;

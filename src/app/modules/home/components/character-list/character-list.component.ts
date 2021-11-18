@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, } from "@angular/core";
-import { CharacterDTO, Gender } from "../../../../interfaces/character-interface";
+import { CharacterDTO, Gender, LocationDTO } from "../../../../interfaces/character-interface";
 
 @Component({
     selector: 'app-character-list',
@@ -9,7 +9,7 @@ import { CharacterDTO, Gender } from "../../../../interfaces/character-interface
 export class CharacterListComponent implements OnInit {
 
     @Output() public onDetailCharacter = new EventEmitter<number>();
-    @Input() public characters!: CharacterDTO[];
+    @Input() public characters!: CharacterDTO<LocationDTO>[];
     @Input() public error: string | any;
     @Input() public characterIds: number[];//for pipe Episode
     @Input() public filterGender: Gender;//for pipe filterGender
