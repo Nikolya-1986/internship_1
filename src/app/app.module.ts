@@ -11,8 +11,8 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
-import { reducerUsers } from './store/character-card/character-card.selector';
-import { CharactersEffects } from './store/character-card/character-card.effect';
+import { reducerUsers } from './store/character/character.selector';
+import { CharactersEffects } from './store/character/character.effect';
 import { AuthGuard } from './guard/auth-guard';
 import { AuthInterceptor } from './interceptors/auth-interceptor';
 

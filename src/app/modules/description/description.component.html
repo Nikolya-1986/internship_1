@@ -15,7 +15,7 @@
             <img [src]="characterDetails.image">
         </div>
 
-        <ul>
+        <ul *ngIf="!isEdit; else editBlock">
             <li>
                 Name: {{ characterDetails.name }}
             </li>
@@ -43,7 +43,25 @@
             <li>
                 Location dimension: {{ characterDetails.location.dimension }}
             </li>
+            <li>
+                <span
+                    (click)="editCharacter()" 
+                    class="character-detail__edit"
+                    >
+                    &#x270D;
+                </span>
+            </li>
         </ul>
+
+        <ng-template #editBlock>
+            <app-character-edit 
+                [characterDetails]="characterDetails"
+                (changeCharacter)="onChangeCharacter($event)"
+                (savedCharacter)="onSavedCharacter()"
+                >
+            </app-character-edit>
+        </ng-template>
+
     </div>
    
 </section>

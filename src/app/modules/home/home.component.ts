@@ -4,10 +4,10 @@ import { select, Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 
 import { CharacterService } from "src/app/services/character/character.service";
-import AppCharactersState from "src/app/store/character-card/character-card.state";
+import AppCharactersState from "src/app/store/character/character.state";
 import { CharacterDTO, Episode, Gender, LocationDTO } from "../../interfaces/character-interface";
-import * as charactersActions from "../../store/character-card/character-card.actions";
-import * as charactersSelectors from "../../store/character-card/character-card.selector";
+import * as charactersActions from "../../store/character/character.actions";
+import * as charactersSelectors from "../../store/character/character.selector";
 
 @Component({
     selector: 'app-home',

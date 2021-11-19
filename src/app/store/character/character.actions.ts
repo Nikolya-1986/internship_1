@@ -5,10 +5,9 @@ export enum loadActionsType {
     LOAD_CHARACTERS_REQUEST = '[CHARACTERS] Load Characters Request',
     LOAD_CHARACTERS_SUCCESS = '[CHARACTERS] Load Characters Success',
     LOAD_CHARACTERS_FAIL = '[CHARACTERS] Load Characters Fail',
-    LOAD_CHARACTER_REQUEST = '[CHARACTER] Load Character Request',
-    LOAD_CHARACTER_SUCCESS = '[CHARACTER] Load Character Success',
-    LOAD_CHARACTER_FAIL = '[CHARACTER] Load Character Fail'
-}
+
+    UPDATE_CHARACTER = '[CHARACTER] Update Character',
+};
 
 export const loadCharactersRequest = createAction (
     loadActionsType.LOAD_CHARACTERS_REQUEST
@@ -24,11 +23,16 @@ export const loadCharactersFail = createAction (
     props<{error: string | any}>()
 );
 
+export const updateCharacter = createAction (
+    loadActionsType.UPDATE_CHARACTER,
+    props<{character: CharacterDTO<LocationDTO>}>()
+);
 
 const allCharactersActions = union({
     loadCharactersRequest,
     loadCharactersSuccess,
     loadCharactersFail,
-})
+    updateCharacter
+});
 
 export type CharactersActions = typeof allCharactersActions

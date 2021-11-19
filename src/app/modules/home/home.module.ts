@@ -16,7 +16,6 @@ import { SearchCharacterNamePipe } from "./pipe/search-name-character.pipe";
 import { FilterEpisodeCharacterPipe } from "./pipe/filter-episode-character.pipe";
 import { FilterNameCharacterPipe } from "./pipe/filter-name-character.pipe";
 
-
 @NgModule({
     declarations: [
         HomeComponent,
