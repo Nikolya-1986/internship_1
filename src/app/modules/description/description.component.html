@@ -29,7 +29,7 @@
                 Gender: {{ characterDetails.gender }}
             </li>
             <li>
-                Created: {{ characterDetails.created }}
+                Created: {{ characterDetails.created | formatData }}
             </li>
             <li>
                 Origin name: {{ characterDetails.origin.name }}
@@ -57,7 +57,6 @@
             <app-character-edit 
                 [characterDetails]="characterDetails"
                 (changeCharacter)="onChangeCharacter($event)"
-                (savedCharacter)="onSavedCharacter()"
                 >
             </app-character-edit>
         </ng-template>

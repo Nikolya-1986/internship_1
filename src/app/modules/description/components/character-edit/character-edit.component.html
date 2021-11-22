@@ -4,7 +4,24 @@
         class="character-edit__form"
         >
 
-       <div class="character-edit__change">
+        <div class="character-edit__change">
+            <label 
+                class="label"
+                for="edit-image"
+                >
+                Load image
+            </label>
+            <input
+                type="file"
+                id="edit-image"
+                (change)="imageChange($event)"
+            />
+            <p *ngIf="imageError">
+                Image size should not be more than 1000000 bytes!
+            </p>
+        </div>
+
+        <div class="character-edit__change">
             <label 
                 class="label"
                 for="edit-name"
@@ -17,9 +34,9 @@
                 type="text"
                 formControlName="name"
             />
-       </div>
+        </div>
 
-       <div class="character-edit__change">
+        <div class="character-edit__change">
             <label
                 class="label"
                 for="edit-status"
@@ -32,9 +49,9 @@
                 type="text"
                 formControlName="status"
             />
-       </div>
+        </div>
 
-       <div class="character-edit__change">
+        <div class="character-edit__change">
             <label
                 class="label"
                 for="edit-species"
@@ -45,7 +62,6 @@
                 class="input"
                 id="edit-species"
                 type="text"
-                required
                 formControlName="species"
             />
         </div>
@@ -61,7 +77,6 @@
                 class="input"
                 id="edit-gender"
                 type="text"
-                required
                 formControlName="gender"
             />
         </div>
@@ -73,13 +88,12 @@
                 >
                 Created
             </label>
-            <!-- <input
+            <input
                 class="input"
                 id="edit-created"
-                type="text"
-                required
+                type="date"
                 formControlName="created"
-            /> -->
+            /> 
         </div>
 
         <div class="character-edit__change">
@@ -108,7 +122,6 @@
                 class="input"
                 id="edit-location-name"
                 type="text"
-                required
                 formControlName="locationName"
             />
         </div>
@@ -124,7 +137,6 @@
                 class="input"
                 id="edit-location-type"
                 type="text"
-                required
                 formControlName="locationType"
             />
         </div>
@@ -140,10 +152,10 @@
                 class="input"
                 id="edit-location-dimension"
                 type="text"
-                required
                 formControlName="locationDimension"
             />
         </div>
+
     </form> 
     <button 
             [disabled]="formEdit.invalid || formEdit.pending"

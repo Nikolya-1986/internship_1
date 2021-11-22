@@ -1,6 +1,11 @@
-.character-item{
+.character-item {
+    width: 350px;
     margin-bottom: 1.5rem;
     border: 2px solid var(--dark-color-1);
+
+    &__head {
+        height: 350px;
+    }
 
     &__body {
         padding: 1rem;
@@ -8,5 +13,18 @@
 
     &__detail {
         cursor: pointer;
+    }
+
+    .image {
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            min-width: 100%;
+            min-height: 100%;
+            flex-shrink: 0;
+        }
     }
 }

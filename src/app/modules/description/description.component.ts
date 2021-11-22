@@ -3,7 +3,6 @@ import { ActivatedRoute } from "@angular/router";
 import { select, Store } from "@ngrx/store";
 import { forkJoin, Observable, of } from "rxjs";
 import { map, switchMap } from "rxjs/operators";
-import * as moment from "moment";
 
 import { CharacterDTO, Location } from "../../interfaces/character-interface";
 import * as charactersSelectors from "../../store/character/character.selector";
@@ -29,7 +28,7 @@ export class DescriptionComponent implements OnInit {
     ){}
 
     public ngOnInit(): void {
-
+       
         this.characterDetail$ = this.activatedRoute.params
             .pipe(
                 map(params => Number(params.id)),
@@ -45,7 +44,6 @@ export class DescriptionComponent implements OnInit {
                     const characterWithLocaton: CharacterDTO<Location> = {
                         ...character,
                         location,
-                        // created: moment(character.created).format('YYYY-MM-DD, h:mm:ss a')
                     }
                     console.log("Character:", characterWithLocaton)
                     return characterWithLocaton;
@@ -59,6 +57,7 @@ export class DescriptionComponent implements OnInit {
 
     public onChangeCharacter(character: CharacterDTO<Location>): void {
         console.log("Changed character:", character);
+        this.isEdit = false;
         this.store.dispatch(charactersActions.updateCharacter({ character }));
         this.characterDetail$ = this.activatedRoute.params
             .pipe(
@@ -73,7 +72,6 @@ export class DescriptionComponent implements OnInit {
                     const characterWithLocaton: CharacterDTO<Location> = {
                         ...character,
                         location,
-                        // created: moment(character.created).format('YYYY-MM-DD, h:mm:ss a')
                     }
                     console.log("Character:", characterWithLocaton)
                     return characterWithLocaton;
@@ -81,7 +79,4 @@ export class DescriptionComponent implements OnInit {
             );
     };
 
-    public onSavedCharacter(): void {
-        this.isEdit = false;
-    }
 }
