@@ -4,11 +4,10 @@ import { map, tap, catchError, exhaustMap, withLatestFrom } from 'rxjs/operators
 import { Action, Store } from "@ngrx/store";
 import { Observable, of } from "rxjs";
 
-import { CharacterDTO, LocationDTO } from "../../interfaces/character-interface";
 import * as charactersActions from "./character.actions";
 import { CharacterService } from "../../services/character/character.service";
 import AppCharactersState from "./character.state";
-import { getCharacterCurrentSelector, getCharactersListSelector } from "./character.selector";
+import * as characterSelectors from "./character.selector";
 
 @Injectable()
 export class CharactersEffects {
@@ -16,17 +15,19 @@ export class CharactersEffects {
     loadCharacters$: Observable<Action> = createEffect(() => this.actions$
         .pipe(
             ofType(charactersActions.loadActionsType.LOAD_CHARACTERS_REQUEST),
-            exhaustMap(() => this.characterService.getCharacters()
+            exhaustMap(() => this.characterService.getAllCharacters()
                 .pipe(
                     withLatestFrom(
-                        this.store.select(getCharactersListSelector),
+                        this.store.select(characterSelectors.getCharactersListSelector),
                     ),
                     map(([newCharacters, currentCharacters]) => {
-                        if (!currentCharacters.length) {
-                            return (charactersActions.loadCharactersSuccess({characters: newCharacters}));
+                        if (currentCharacters.length < 826) {
+                            return (charactersActions.loadCharactersSuccess({characters: newCharacters.results}));
+                        } else {
+                            return { type: 'Empty Action' };
                         }
-                        return { type: 'Empty Action' };
                     }),
+                    tap((allCharacters) => console.log(allCharacters)),
                     catchError((error) => of(charactersActions.loadCharactersFail(error)))
                 )
             )
