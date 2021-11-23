@@ -8,7 +8,6 @@ export class FormatDataPipe implements PipeTransform {
 
     transform(date: string) {
         
-        const dateFormat = new Date(date);
-        return moment(dateFormat).format('YYYY-MM-DD, h:mm:ss a');
+        return moment(date).format('YYYY-MM-DD, h:mm:ss a');
     }
 }

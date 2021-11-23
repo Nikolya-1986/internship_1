@@ -15,10 +15,26 @@
                 type="file"
                 id="edit-image"
                 (change)="imageChange($event)"
+                formControlName="image"
             />
-            <p *ngIf="imageError">
-                Image size should not be more than 1000000 bytes!
-            </p>
+            <div 
+                class="validation"
+                *ngIf="formEdit.controls.image.invalid 
+                    && formEdit.controls.image.touched"
+                >
+                <small 
+                    class="error"
+                    *ngIf="formEdit.controls.image.errors.noFile"
+                    >
+                    Please select images for editing!
+                </small>
+                <small 
+                    class="error"
+                    *ngIf="formEdit.controls.image.errors.fileToBig"
+                    >
+                    Image size should not be more than 1000000 bytes!
+                </small>
+            </div>
         </div>
 
         <div class="character-edit__change">
