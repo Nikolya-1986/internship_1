@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+import { EMPTY, from, Observable, of } from "rxjs";
+import { expand, map, switchMap, tap } from "rxjs/operators";
 
 import { CharacterDTO, CharactersDTO, Episode, EpisodesDTO, LocationDTO, Location } from "../../interfaces/character-interface";
 
@@ -11,15 +11,26 @@ import { CharacterDTO, CharactersDTO, Episode, EpisodesDTO, LocationDTO, Locatio
 })
 export class CharacterService  {
 
-    private readonly BASE_URL =  "https://rickandmortyapi.com/api"
+    private readonly BASE_URL =  "https://rickandmortyapi.com/api";
 
     constructor(
         private httpClient: HttpClient
     ){}
 
-    public getCharacters(): Observable<CharacterDTO<LocationDTO>[]> {
-        return this.httpClient.get<CharactersDTO>(`${this.BASE_URL}/character`).pipe(
-            map((data) => data.results),
+    private getCharactersPage(url: string): Observable<CharactersDTO> {
+        return from(fetch(url)).pipe(
+            switchMap((result) => result.json()),
+        );
+    }
+
+    public getAllCharacters() {
+        let characters = []
+        return this.getCharactersPage(`${this.BASE_URL}/character`).pipe(
+            tap(response => {
+                characters = characters.concat(response.results)
+                console.log(characters)
+            }),
+            expand((prev) => prev.info.next ? this.getCharactersPage(prev.info.next) : EMPTY),
         )
     };
 

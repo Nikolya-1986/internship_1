@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { select, Store } from "@ngrx/store";
 import { Observable } from "rxjs";
+import { tap } from "rxjs/operators";
 
 import { CharacterService } from "src/app/services/character/character.service";
 import AppCharactersState from "src/app/store/character/character.state";
@@ -29,6 +30,9 @@ export class HomeComponent implements OnInit {
     public filterName: string = '';//pipe for fiter Alphabet
     public sortAlfabet: string[] = ['Default', 'Alphabet(Aa-Zz)', 'Alphabet(Zz-Aa)']//sort name alphabet for filter
     
+
+    public characters!: CharacterDTO<LocationDTO>;
+
     constructor(
         private store: Store<AppCharactersState>,
         private characterService: CharacterService,
@@ -46,6 +50,7 @@ export class HomeComponent implements OnInit {
             this.characterIds = episodes[0].characters;
             this.episodes = episodes;
         });
+        this.characterService.getAllCharacters().subscribe((item) => console.log(item.results))
     }
 
 

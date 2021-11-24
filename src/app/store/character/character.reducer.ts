@@ -24,7 +24,7 @@ export const CharactersReducer = createReducer (
     on(characterActions.loadCharactersSuccess, (state, action) => ({            
         ...state,
         loading: false,
-        characters: action.characters
+        characters: [...state.characters, ...action.characters]
     })),
     on(characterActions.loadCharactersFail, (state, action) => ({
         ...state,

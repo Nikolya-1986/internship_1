@@ -1,5 +1,5 @@
-import { ActionReducerMap, createFeatureSelector, createSelector, createSelectorFactory } from "@ngrx/store";
-import { CharacterDTO } from "src/app/interfaces/character-interface";
+import { ActionReducerMap, createFeatureSelector, createSelector } from "@ngrx/store";
+
 import { CharactersState, CharactersReducer } from "./character.reducer";
 import AppCharactersState from "./character.state";
 
@@ -12,7 +12,7 @@ export const getCharactersLoadingSelector = createSelector (
 
 export const getCharactersListSelector = createSelector (
     getCharactersFutureSelector,
-    (state: CharactersState) => state.characters
+    (state: CharactersState) => state.characters,
 );
 
 export const getCharactersFailSelector = createSelector (
