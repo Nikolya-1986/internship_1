@@ -1,4 +1,10 @@
 <section class="character-item__container character-item">
+    <div 
+        class="character-item__delete"
+        (click)="openModal()"
+        >
+        <img [src]="delete">
+    </div>
     <div class="character-item__head image">
         <img 
             [src]="character.image" 

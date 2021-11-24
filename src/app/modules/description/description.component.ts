@@ -34,8 +34,6 @@ export class DescriptionComponent implements OnInit {
                 map(params => Number(params.id)),
                 switchMap((id) => this.store.pipe(select(charactersSelectors.getCharacterCurrentSelector(id)))),
                 switchMap((character) => {
-                    console.log(character);
-                    
                     const location$ = this.characterService.getLocation(character.location.url);
                     const character$ = of(character);
                     return forkJoin([location$, character$]);
@@ -73,10 +71,8 @@ export class DescriptionComponent implements OnInit {
                         ...character,
                         location,
                     }
-                    console.log("Character:", characterWithLocaton)
                     return characterWithLocaton;
                 })
             );
     };
-
 }

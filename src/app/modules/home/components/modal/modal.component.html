@@ -1,0 +1,23 @@
+<section class="modal__container modal">
+    <div class="modal__window">
+        <h1>
+            {{ title }}
+        </h1>
+        <ul>
+            <li>
+                The name of the сharacter you want to remove: {{ name }}
+            </li>
+            <li>
+                {{ body }}
+            </li>
+        </ul>
+        <div class="modal__btn">
+            <button (click)="cancel()">
+                Cancel
+            </button>
+            <button (click)="confirm()">
+                Confirm
+            </button>
+        </div>
+    </div>
+</section>

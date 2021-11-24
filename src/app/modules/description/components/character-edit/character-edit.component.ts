@@ -68,7 +68,7 @@ export class CharacterEditComponent implements OnInit{
             const id = this.characterDetails.id;
             const editCharacter = this.formEdit.getRawValue();
             const character = {
-                ...this.characterDetails,
+                // ...this.characterDetails,
                 id,
                 ...editCharacter,
             };

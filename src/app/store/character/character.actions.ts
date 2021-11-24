@@ -5,8 +5,8 @@ export enum loadActionsType {
     LOAD_CHARACTERS_REQUEST = '[CHARACTERS] Load Characters Request',
     LOAD_CHARACTERS_SUCCESS = '[CHARACTERS] Load Characters Success',
     LOAD_CHARACTERS_FAIL = '[CHARACTERS] Load Characters Fail',
-
     UPDATE_CHARACTER = '[CHARACTER] Update Character',
+    DELETE_CHARACTER = '[CHARACTER] Delete Character',
 };
 
 export const loadCharactersRequest = createAction (
@@ -28,11 +28,17 @@ export const updateCharacter = createAction (
     props<{character: CharacterDTO<LocationDTO>}>()
 );
 
+export const deleteCharacter = createAction (
+    loadActionsType.DELETE_CHARACTER,
+    props<{id: number}>()
+);
+
 const allCharactersActions = union({
     loadCharactersRequest,
     loadCharactersSuccess,
     loadCharactersFail,
-    updateCharacter
+    updateCharacter,
+    deleteCharacter
 });
 
 export type CharactersActions = typeof allCharactersActions
