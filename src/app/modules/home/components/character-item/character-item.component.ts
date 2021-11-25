@@ -10,6 +10,9 @@ export class CharacterItemComponent {
 
     @Input() public character!: CharacterDTO<LocationDTO>;
     @Output() public onDetailCharacter = new EventEmitter<number>();
+    @Output() public showModal = new EventEmitter<CharacterDTO<LocationDTO>>();
+
+    public delete: string = "assets/images/delete.png"
 
     constructor() { }
 
@@ -17,4 +20,7 @@ export class CharacterItemComponent {
         this.onDetailCharacter.emit(this.character.id);
     }
 
+    public openModal(): void {
+        this.showModal.emit(this.character);
+    }
 }

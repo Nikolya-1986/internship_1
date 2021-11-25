@@ -1,6 +1,7 @@
 .character-item {
+    position: relative;
     width: 350px;
-    margin-bottom: 1.5rem;
+    margin: 0 1.5rem 1.5rem 0;
     border: 2px solid var(--dark-color-1);
 
     &__head {
@@ -12,6 +13,14 @@
     }
 
     &__detail {
+        cursor: pointer;
+    }
+
+    &__delete {
+        position: absolute;
+        width: 35px;
+        top: 10px;
+        right: 10px;
         cursor: pointer;
     }
 

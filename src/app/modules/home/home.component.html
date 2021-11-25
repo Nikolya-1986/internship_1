@@ -1,3 +1,4 @@
+<ng-template #modal></ng-template>
 <section class="home__container home">
     <h1>
         Page cartoon characters
@@ -28,6 +29,7 @@
         [searchName]="searchName"
         [filterName]="filterName"
         (onDetailCharacter)="detailCharacter($event)"
+        (openedModal)="onOpenedModal($event)"
         >
         <img 
             class="home__image-loading"

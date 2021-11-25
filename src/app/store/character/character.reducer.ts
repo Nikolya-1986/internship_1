@@ -32,15 +32,25 @@ export const CharactersReducer = createReducer (
         errorMessage: action.error
     })),
     on(characterActions.updateCharacter, (state, action) => {
-        const updateCharacters = [...state.characters.map((item) => {
-            return item.id === action.character.id ? action.character : item
+        const updateCharacter = [...state.characters.map((itemUpdate) => {
+            return itemUpdate.id === action.character.id ? action.character : itemUpdate
         })];
 
         console.log(action.character);
         return {
             ...state,
             loading: false,
-            characters: updateCharacters
+            characters: updateCharacter
+        }
+    }),
+    on(characterActions.deleteCharacter, (state, action) => {
+        const deleteCharacter = [...state.characters.filter((itemDelete) => {
+            return itemDelete.id !== action.id;
+        })];
+        return {
+            ...state,
+            loading: false,
+            characters: deleteCharacter
         }
     })
 )
