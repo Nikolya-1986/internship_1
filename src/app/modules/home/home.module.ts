@@ -44,6 +44,7 @@ import { FilterNameCharacterPipe } from "./pipe/filter-name-character.pipe";
     ],
     exports: [
         RouterModule,
+        ChangeTextPipe
     ]
 })
 export class HomeModule {}

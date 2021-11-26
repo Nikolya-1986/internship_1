@@ -1,13 +1,13 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { map, tap, catchError, exhaustMap, withLatestFrom } from 'rxjs/operators';
+import { map, catchError, withLatestFrom, mergeMap } from 'rxjs/operators';
 import { Action, Store } from "@ngrx/store";
 import { Observable, of } from "rxjs";
 
-import * as charactersActions from "./character.actions";
 import { CharacterService } from "../../services/character/character.service";
 import AppCharactersState from "./character.state";
 import * as characterSelectors from "./character.selector";
+import * as charactersActions from "./character.actions";
 
 @Injectable()
 export class CharactersEffects {
@@ -15,19 +15,18 @@ export class CharactersEffects {
     loadCharacters$: Observable<Action> = createEffect(() => this.actions$
         .pipe(
             ofType(charactersActions.loadActionsType.LOAD_CHARACTERS_REQUEST),
-            exhaustMap(() => this.characterService.getAllCharacters()
+            mergeMap(() => this.characterService.getAllCharacters()
                 .pipe(
                     withLatestFrom(
                         this.store.select(characterSelectors.getCharactersListSelector),
                     ),
-                    map(([newCharacters, currentCharacters]) => {
+                    map(([newCharacter, currentCharacters]) => {
                         if (currentCharacters.length < 826) {
-                            return (charactersActions.loadCharactersSuccess({characters: newCharacters.results}));
+                            return (charactersActions.loadCharactersSuccess({characters: newCharacter.results}));
                         } else {
                             return { type: 'Empty Action' };
                         }
                     }),
-                    tap((allCharacters) => console.log(allCharacters)),
                     catchError((error) => of(charactersActions.loadCharactersFail(error)))
                 )
             )

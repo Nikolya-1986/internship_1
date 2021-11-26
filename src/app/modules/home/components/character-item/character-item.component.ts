@@ -11,8 +11,8 @@ export class CharacterItemComponent {
     @Input() public character!: CharacterDTO<LocationDTO>;
     @Output() public onDetailCharacter = new EventEmitter<number>();
     @Output() public showModal = new EventEmitter<CharacterDTO<LocationDTO>>();
-
-    public delete: string = "assets/images/delete.png"
+ 
+    public deleteImage: string = "assets/images/delete.png"
 
     constructor() { }
 

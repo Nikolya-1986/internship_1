@@ -4,7 +4,7 @@ import { fromEvent, Observable } from "rxjs";
 import { filter, map, take } from "rxjs/operators";
 
 import { CharacterDTO, Location } from "../../../../interfaces/character-interface";
-import { imageValidator } from "../../validators/image-validator";
+import { imageValidator } from "../../../../validators/image-validator";
 
 @Component({
     selector: 'app-character-edit',
@@ -18,7 +18,6 @@ export class CharacterEditComponent implements OnInit{
     @Output() public changeCharacter = new EventEmitter<CharacterDTO<Location>>();
     
     public formEdit: FormGroup;
-    public imageError: string;
 
     constructor(
         private formBilder: FormBuilder,

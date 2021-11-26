@@ -1,0 +1,302 @@
+<section class="character-add__container character-add">
+    <h1>
+        Add new character
+    </h1>
+
+    <form
+        [formGroup]="formAdd"
+        (submit)="saveCharacter()"
+        ngNativeValidate
+        >
+        <div class="character-add__new">
+            <label  
+                class="label"
+                for="add-image"
+                >
+                Add image
+            </label>
+            <input
+                type="file"
+                id="add-image"
+                formControlName="image"
+                (change)="addImage($event)"
+            />
+            <div 
+                class="validation"
+                *ngIf="formAdd.controls.image.invalid && formAdd.controls.image.touched"
+                >
+                <small 
+                    class="error"
+                    *ngIf="formAdd.controls.image.errors.noFile"
+                    >
+                    Please select images for editing!
+                </small>
+            </div>
+        </div>
+
+        <div class="character-add__new">
+            <label 
+                class="label"
+                for="add-name"
+                >
+                Enter name
+            </label>
+            <input
+                class="input"
+                type="text"
+                id="add-name"
+                formControlName="name"
+            />
+            <div 
+                class="validation"
+                *ngIf="formAdd.controls.name.invalid && formAdd.controls.name.touched"
+                >
+                <small 
+                    class="error"
+                    *ngIf="formAdd.controls.name.errors.required"
+                    >
+                    Please enter character name. This field should not be empty!
+                </small>
+            </div>
+        </div>
+
+        <div class="character-add__new">
+            <label 
+                class="label"
+                for="add-status"
+                >
+                Enter status
+            </label>
+            <input
+                class="input"
+                type="text"
+                id="add-status"
+                formControlName="status"
+            />
+            <div 
+                class="validation"
+                *ngIf="formAdd.controls.status.invalid && formAdd.controls.status.touched"
+                >
+                <small 
+                    class="error"
+                    *ngIf="formAdd.controls.status.errors.required"
+                    >
+                    Please enter character status. This field should not be empty!
+                </small>
+            </div>
+        </div>
+
+        <div class="character-add__new">
+            <label 
+                class="label"
+                for="add-species"
+                >
+                Enter species
+            </label>
+            <input
+                class="input"
+                type="text"
+                id="add-species"
+                formControlName="species"
+            />
+            <div 
+                class="validation"
+                *ngIf="formAdd.controls.species.invalid && formAdd.controls.species.touched"
+                >
+                <small 
+                    class="error"
+                    *ngIf="formAdd.controls.species.errors.required"
+                    >
+                    Please enter character species. This field should not be empty!
+                </small>
+            </div>
+        </div>
+
+        <div class="character-add__new">
+            <label 
+                class="label"
+                for="add-gender"
+                >
+                Chang gender
+            </label>
+            <select
+                id="add-gender"
+                formControlName="gender"
+                >
+                <option 
+                    *ngFor="let item of gender"
+                    [value]="item"
+                    >
+                    {{ item }}
+                </option>
+            </select>
+            <div 
+                class="validation"
+                *ngIf="formAdd.controls.gender.invalid && formAdd.controls.gender.touched"
+                >
+                <small 
+                    class="error"
+                    *ngIf="formAdd.controls.gender.errors.required"
+                    >
+                    Please enter character gender. This field should not be empty!
+                </small>
+            </div>
+        </div>
+
+        <div class="character-add__new">
+            <label 
+                class="label"
+                for="add-episode"
+                >
+                Change episode
+            </label>
+            <select                 
+                id="add-episode"
+                formControlName="episode"
+                >
+                <option 
+                    *ngFor="let item of episodes"
+                    [value]="item"
+                    >
+                    {{ item.episode }}
+                </option>
+            </select>
+        </div>
+
+        <div class="character-add__new">
+            <label 
+                class="label"
+                for="add-data"
+                >
+                Enter data created
+            </label>
+            <input
+                class="input"
+                type="date"
+                id="add-data"
+                formControlName="created"
+            />
+            <div 
+                class="validation"
+                *ngIf="formAdd.controls.created.invalid && formAdd.controls.created.touched"
+                >
+                <small 
+                    class="error"
+                    *ngIf="formAdd.controls.created.errors.required"
+                    >
+                    Please enter the date the character was created. This field should not be empty!
+                </small>
+            </div>
+        </div>
+
+        <div class="character-add__new">
+            <label 
+                class="label"
+                for="add-originName"
+                >
+                Enter origin name
+            </label>
+            <input
+                class="input"
+                type="text"
+                id="add-originName"
+                formControlName="originName"
+            />
+            <div 
+                class="validation"
+                *ngIf="formAdd.controls.originName.invalid && formAdd.controls.originName.touched"
+                >
+                <small 
+                    class="error"
+                    *ngIf="formAdd.controls.originName.errors.required"
+                    >
+                    Please enter origin name character. This field should not be empty!
+                </small>
+            </div>
+        </div>
+
+        <div class="character-add__new">
+            <label 
+                class="label"
+                for="add-locationName"
+                >
+                Enter location name
+            </label>
+            <input
+                class="input"
+                type="text"
+                id="add-locationName"
+                formControlName="locationName"
+            />
+            <div 
+                class="validation"
+                *ngIf="formAdd.controls.locationName.invalid && formAdd.controls.locationName.touched"
+                >
+                <small 
+                    class="error"
+                    *ngIf="formAdd.controls.locationName.errors.required"
+                    >
+                    Please enter location name character. This field should not be empty!
+                </small>
+            </div>
+        </div>
+
+        <div class="character-add__new">
+            <label 
+                class="label"
+                for="add-locationType"
+                >
+                Enter location type
+            </label>
+            <input
+                class="input"
+                type="text"
+                id="add-locationType"
+                formControlName="locationType"
+            />
+            <div 
+                class="validation"
+                *ngIf="formAdd.controls.locationType.invalid && formAdd.controls.locationType.touched"
+                >
+                <small 
+                    class="error"
+                    *ngIf="formAdd.controls.locationType.errors.required"
+                    >
+                    Please enter location type character. This field should not be empty!
+                </small>
+            </div>
+        </div>
+        
+        <div class="character-add__new">
+            <label 
+                class="label"
+                for="add-locationDimension"
+                >
+                Enter location dimension
+            </label>
+            <input
+                class="input"
+                type="text"
+                id="add-locationDimension"
+                formControlName="locationDimension"
+            />
+            <div 
+                class="validation"
+                *ngIf="formAdd.controls.locationDimension.invalid && formAdd.controls.locationDimension.touched"
+                >
+                <small 
+                    class="error"
+                    *ngIf="formAdd.controls.locationDimension.errors.required"
+                    >
+                    Please enter location dimension character. This field should not be empty!
+                </small>
+            </div>
+        </div>
+
+        <input 
+            type="submit" 
+            value="Save character"
+            [disabled]="formAdd.invalid || formAdd.pending"
+        />
+    </form>
+</section>
