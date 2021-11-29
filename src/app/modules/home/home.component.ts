@@ -52,7 +52,6 @@ export class HomeComponent implements OnInit, OnDestroy {
             this.characterIds = episodes[0].characters;
             this.episodes = episodes;
         });
-        this.characterService.getAllCharacters().subscribe((item) => console.log(item.results))
     };
 
 

@@ -32,10 +32,7 @@ export const CharactersReducer = createReducer (
         errorMessage: action.error
     })),
     on(characterActions.updateCharacter, (state, action) => {
-        const updateCharacter = [...state.characters.map((itemUpdate) => {
-            return itemUpdate.id === action.character.id ? action.character : itemUpdate
-        })];
-
+        const updateCharacter = [...state.characters.map(itemUpdate => itemUpdate.id === action.character.id ? action.character : itemUpdate)];
         console.log(action.character);
         return {
             ...state,
@@ -44,13 +41,19 @@ export const CharactersReducer = createReducer (
         }
     }),
     on(characterActions.deleteCharacter, (state, action) => {
-        const deleteCharacter = [...state.characters.filter((itemDelete) => {
-            return itemDelete.id !== action.id;
-        })];
+        const deleteCharacter = [...state.characters.filter(itemDelete => itemDelete.id !== action.id)];
         return {
             ...state,
             loading: false,
             characters: deleteCharacter
+        }
+    }),
+    on(characterActions.createCharacter, (state, action) => {
+        console.log("State:", action.character);
+        return {
+            ...state,
+            loading: false,
+            characters: [action.character, ...state.characters]
         }
     })
 )

@@ -5,7 +5,6 @@ import { expand, map, switchMap, tap } from "rxjs/operators";
 
 import { CharacterDTO, CharactersDTO, Episode, EpisodesDTO, LocationDTO, Location } from "../../interfaces/character-interface";
 
-
 @Injectable({
     providedIn: 'root'
 })
@@ -24,11 +23,10 @@ export class CharacterService  {
     }
 
     public getAllCharacters() {
-        let characters = []
+        let characters = [];
         return this.getCharactersPage(`${this.BASE_URL}/character`).pipe(
             tap(response => {
-                characters = characters.concat(response.results)
-                console.log(characters)
+                characters = [...response.results]
             }),
             expand((prev) => prev.info.next ? this.getCharactersPage(prev.info.next) : EMPTY),
         )

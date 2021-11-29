@@ -11,10 +11,10 @@
         <ng-template #showBlock> 
             <div *ngFor="let character of characters | 
                 sortCharacterName: searchName |
-                filterEpisodeCharacter: characterIds |
                 filterGenderCharacter: filterGender | 
                 filterNameCharacter: filterName"
                 >
+                <!-- filterEpisodeCharacter: characterIds | -->
                 <app-character-item
                     [character]="character"
                     (onDetailCharacter)="detailCharacter($event)"

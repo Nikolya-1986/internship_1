@@ -1,5 +1,4 @@
 export interface CharactersDTO {
-    json(): any;
     results: CharacterDTO<LocationDTO>[],
     info: {
         next: string
