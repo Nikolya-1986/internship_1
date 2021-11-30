@@ -1,4 +1,9 @@
 <section class="episode-list__container episode-list">
+    <!-- <button 
+        class="episode-character__button"
+        >
+        Serie: all Episode: all
+    </button> -->
     <div 
         *ngFor="let episode of episodes"
         class="episode-list__buttons"
@@ -8,6 +13,7 @@
             [episode]="episode"
             [activeEpisodeId]="activeEpisodeId"
             > 
+            <ng-content></ng-content>
         </app-episode-item>
     </div>
 </section>

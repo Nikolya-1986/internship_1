@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     public ngOnInit(): void {
         this.store.dispatch(charactersActions.loadCharactersRequest());
-        this.loading$ = this.store.pipe(select(charactersSelectors.getCharactersLoadingSelector));
+        this.loading$ = this.store.pipe(select(charactersSelectors.getIsLoading));
         this.characters$ = this.store.pipe(select(charactersSelectors.getCharactersListSelector));
         this.error$ = this.store.pipe(select(charactersSelectors.getCharactersFailSelector));
     

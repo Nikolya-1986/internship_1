@@ -5,35 +5,35 @@ import *as characterActions from "./character.actions";
 
 export interface CharactersState {
     characters: CharacterDTO<LocationDTO>[],
-    loading: boolean,
-    // counter: number,
+    loadCounter: number,
     errorMessage: string | any
 }; 
 
 const initialstate: CharactersState = {
     characters: [],
-    loading: false,
-    // counter: 0,
+    loadCounter: 0,
     errorMessage: ""
 };
 
 export const CharactersReducer = createReducer (
     initialstate,
+    on(characterActions.loadStart, state => ({
+        ...state,
+        loadCounter: state.loadCounter + 1
+    })),
+    on(characterActions.loadEnd, state => ({
+        ...state,
+        loadCounter: state.loadCounter - 1
+    })),
     on(characterActions.loadCharactersRequest, state => ({
         ...state,
-        loading: true
-        // counter: +1
     })),
     on(characterActions.loadCharactersSuccess, (state, action) => ({            
         ...state,
-        loading: false,
-        // counter: -1,
         characters: [...state.characters, ...action.characters]
     })),
     on(characterActions.loadCharactersFail, (state, action) => ({
         ...state,
-        loading: false,
-        // counter: -1,
         errorMessage: action.error
     })),
     on(characterActions.updateCharacter, (state, action) => {
@@ -41,8 +41,6 @@ export const CharactersReducer = createReducer (
         console.log(action.character);
         return {
             ...state,
-            loading: false,
-            // counter: -1,
             characters: updateCharacter
         }
     }),
@@ -50,8 +48,6 @@ export const CharactersReducer = createReducer (
         const deleteCharacter = [...state.characters.filter(itemDelete => itemDelete.id !== action.id)];
         return {
             ...state,
-            loading: false,
-            // counter: -1,
             characters: deleteCharacter
         }
     }),
@@ -59,8 +55,6 @@ export const CharactersReducer = createReducer (
         console.log("State:", action.character);
         return {
             ...state,
-            loading: false,
-            // counter: -1,
             characters: [action.character, ...state.characters]
         }
     })

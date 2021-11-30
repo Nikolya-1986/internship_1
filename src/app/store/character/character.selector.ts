@@ -5,10 +5,9 @@ import AppCharactersState from "./character.state";
 
 export const getCharactersFutureSelector = createFeatureSelector<CharactersState>("characters")
 
-export const getCharactersLoadingSelector = createSelector (
+export const getIsLoading = createSelector (
     getCharactersFutureSelector,
-    (state: CharactersState) => state.loading
-    // (state: CharactersState) => state.counter
+    (state: CharactersState) => state.loadCounter !== 0
 );
 
 export const getCharactersListSelector = createSelector (
