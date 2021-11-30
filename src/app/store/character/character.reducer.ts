@@ -6,12 +6,14 @@ import *as characterActions from "./character.actions";
 export interface CharactersState {
     characters: CharacterDTO<LocationDTO>[],
     loading: boolean,
+    // counter: number,
     errorMessage: string | any
 }; 
 
 const initialstate: CharactersState = {
     characters: [],
     loading: false,
+    // counter: 0,
     errorMessage: ""
 };
 
@@ -20,15 +22,18 @@ export const CharactersReducer = createReducer (
     on(characterActions.loadCharactersRequest, state => ({
         ...state,
         loading: true
+        // counter: +1
     })),
     on(characterActions.loadCharactersSuccess, (state, action) => ({            
         ...state,
         loading: false,
+        // counter: -1,
         characters: [...state.characters, ...action.characters]
     })),
     on(characterActions.loadCharactersFail, (state, action) => ({
         ...state,
         loading: false,
+        // counter: -1,
         errorMessage: action.error
     })),
     on(characterActions.updateCharacter, (state, action) => {
@@ -37,6 +42,7 @@ export const CharactersReducer = createReducer (
         return {
             ...state,
             loading: false,
+            // counter: -1,
             characters: updateCharacter
         }
     }),
@@ -45,6 +51,7 @@ export const CharactersReducer = createReducer (
         return {
             ...state,
             loading: false,
+            // counter: -1,
             characters: deleteCharacter
         }
     }),
@@ -53,6 +60,7 @@ export const CharactersReducer = createReducer (
         return {
             ...state,
             loading: false,
+            // counter: -1,
             characters: [action.character, ...state.characters]
         }
     })

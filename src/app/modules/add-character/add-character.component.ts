@@ -3,11 +3,13 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Store } from "@ngrx/store";
 import { fromEvent, Observable } from "rxjs";
 import { filter, map, take } from "rxjs/operators";
+import { Router } from "@angular/router";
 
+import { CharacterService } from "src/app/services/character/character.service";
 import { CharacterDTO, Episode, Gender, LocationDTO } from "../../interfaces/character-interface";
-import * as characterActions from "../../store/character/character.actions";
 import AppCharactersState from "../../store/character/character.state";
 import { imageValidator } from "../../validators/image-validator";
+import * as characterActions from "../../store/character/character.actions";
 
 @Component({
     selector: 'app-add-character',
@@ -17,14 +19,16 @@ import { imageValidator } from "../../validators/image-validator";
 export class AddCharacterComponent implements OnInit {
 
     public formAdd: FormGroup;
-    public gender: Gender[] = [Gender.Female, Gender.Male];//show all gender
+    public gender: Gender[] = [Gender.Female, Gender.Male];
     public episodes: Episode[];
-
     private base64Image: string;
+    public characterEpisodeIds: number[];
 
     constructor(
         private formBilder: FormBuilder,
         private store: Store<AppCharactersState>,
+        private characterService: CharacterService,
+        private router: Router,
     ){}
 
     public ngOnInit(): void {
@@ -56,9 +60,9 @@ export class AddCharacterComponent implements OnInit {
                 ]
             ],
             episode: ["",
-                // [
-                //     Validators.required
-                // ]
+                [
+                    Validators.required
+                ]
             ],
             created: ["",
                 [
@@ -85,27 +89,33 @@ export class AddCharacterComponent implements OnInit {
                     Validators.required,
                 ]
             ]
-        })
+        });
+
+        this.characterService.getEpisodes().subscribe((episodes) => {
+            this.episodes = episodes;
+        });
     };
 
     public saveCharacter(): void {
         if(this.formAdd.valid) {
             const newCharacter = this.formAdd.getRawValue();
-            const id = Math.random();
+            const id = Math.floor(Math.random() * 100) + 1;
             const saveCharacter: CharacterDTO<LocationDTO> = {
                 ...newCharacter,
+                episode: [newCharacter.episode],
                 image: this.base64Image,
-                id: id
+                id
             };
             console.log(saveCharacter);
-            this.store.dispatch(characterActions.createCharacter({character: saveCharacter}))
+            this.store.dispatch(characterActions.createCharacter({character: saveCharacter}));
+            this.router.navigate(['/'])
         }
     };
 
     public addImage(inputEvent: Event): void {
         const image = this.getBase64fromFile(inputEvent as ProgressEvent<HTMLInputElement>).pipe(take(1));
         image.subscribe(imageString => this.base64Image = imageString);
-    }
+    };
 
     private getBase64fromFile({ target }: { target: HTMLInputElement}): Observable<string> {
         const reader = new FileReader();

@@ -8,11 +8,12 @@ export const getCharactersFutureSelector = createFeatureSelector<CharactersState
 export const getCharactersLoadingSelector = createSelector (
     getCharactersFutureSelector,
     (state: CharactersState) => state.loading
+    // (state: CharactersState) => state.counter
 );
 
 export const getCharactersListSelector = createSelector (
     getCharactersFutureSelector,
-    (state: CharactersState) => state.characters,
+    (state: CharactersState) => state.characters
 );
 
 export const getCharactersFailSelector = createSelector (

@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { EMPTY, from, Observable, of } from "rxjs";
+import { EMPTY, from, Observable } from "rxjs";
 import { expand, map, switchMap, tap } from "rxjs/operators";
 
 import { CharacterDTO, CharactersDTO, Episode, EpisodesDTO, LocationDTO, Location } from "../../interfaces/character-interface";

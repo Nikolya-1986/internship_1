@@ -12,9 +12,9 @@
             <div *ngFor="let character of characters | 
                 sortCharacterName: searchName |
                 filterGenderCharacter: filterGender | 
+                filterEpisodeCharacter: characterIds |
                 filterNameCharacter: filterName"
                 >
-                <!-- filterEpisodeCharacter: characterIds | -->
                 <app-character-item
                     [character]="character"
                     (onDetailCharacter)="detailCharacter($event)"
