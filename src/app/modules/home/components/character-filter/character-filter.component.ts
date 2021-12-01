@@ -14,8 +14,8 @@ export class CharacterFilterComponent {
     @Output() public changeCurrentName = new EventEmitter<string>();
     @Input() public gender: Gender[];
     @Input() public filterGender: Gender = Gender.All;
-    @Input() public searchName: string;
     @Input() public filterName = 'Default';
+    @Input() public searchName: string;
     @Input() public sortAlfabet: string[];
 
     constructor(

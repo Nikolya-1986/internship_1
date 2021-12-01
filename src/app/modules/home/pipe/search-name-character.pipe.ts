@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from "@angular/core";
+
 import { CharacterDTO, LocationDTO } from "../../../interfaces/character-interface";
 
 @Pipe({

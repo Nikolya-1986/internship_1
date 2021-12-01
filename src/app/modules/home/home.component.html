@@ -12,7 +12,10 @@
         
     <app-character-filter
         [gender]="gender"
+        [filterGender]="filterGender"
+        [filterName]="filterName"
         [sortAlfabet]="sortAlfabet"
+        [searchName]="searchName"
         (currentGender)="onCurrentGender($event)"
         (currentName)="onCurrentName($event)"
         (changeCurrentName)="onChangeCurrentName($event)"

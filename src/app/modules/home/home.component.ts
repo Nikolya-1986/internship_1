@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
-import { ActivatedRoute, Params, Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { select, Store } from "@ngrx/store";
 import { Observable, Subject } from "rxjs";
 
@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     private viewContainerRef: ViewContainerRef;
     private destroy$ = new Subject();
+    
     public loading$!: Observable<string | any>;
     public characters$!: Observable<CharacterDTO<LocationDTO>[]>;
     public error$!: Observable<Error>;
@@ -52,11 +53,9 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.saveQueryparams();
     };
 
-
     private saveQueryparams(): void {
         const episodes$ = this.characterService.getEpisodes();
-        const routerQueryParams$ = this.activateRoute.queryParams;
-        // const routerQueryParams$ = this.activateRoute.queryParamMap;
+        const routerQueryParams$ = this.activateRoute.queryParamMap;
 
         episodes$.pipe(switchMap((episodes) => {
             this.episodes = episodes;
@@ -64,10 +63,22 @@ export class HomeComponent implements OnInit, OnDestroy {
         }))
         .pipe(takeUntil(this.destroy$))
         .subscribe(params => {
-            const episodeId = Number(params.episode);
-            this.activeEpisodeId = episodeId;
-            console.log(episodeId);
-            this.characterIds = this.episodes.find(episode => episode.id === this.activeEpisodeId).characters;
+            const episodeId = Number(params.get('episode'));
+            const genderSelected = params.get('selectedGender') as Gender || Gender.All;
+            const nameSelected = params.get('selectedSortName') || 'Default';
+            const nameSearch = params.get('selectedSearchName') || '';
+            this.filterGender = genderSelected;
+            this.filterName = nameSelected;
+            this.searchName = nameSearch;
+
+            if(episodeId) {
+                this.activeEpisodeId = episodeId;
+                this.characterIds = this.episodes.find(episode => episode.id === this.activeEpisodeId).characters;
+            }
+            else {
+                this.activeEpisodeId = this.episodes[0].id;
+                this.characterIds = this.episodes[0].characters;
+            }
         })
     };
 
