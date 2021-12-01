@@ -1,4 +1,5 @@
 import { Component, Output, EventEmitter, Input } from "@angular/core";
+import { Router } from "@angular/router";
 import { Episode } from "../../../../interfaces/character-interface";
 
 @Component({
@@ -12,10 +13,12 @@ export class EpisodeListComponent {
     @Input() public episodes: Episode[];//array with name episode (button name)
     @Input() public activeEpisodeId: number;
     
-    constructor(){}
-    
+    constructor(
+        private router: Router,
+    ){}
+
     public onEpisodeChange(id: number): void {
         this.episodeSelect.emit(id);
+        this.router.navigate(['home'], {queryParams: { episode: id }})
     }
 }
-

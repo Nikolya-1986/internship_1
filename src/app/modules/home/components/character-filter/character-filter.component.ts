@@ -1,4 +1,5 @@
 import { Component, Output, EventEmitter, Input } from "@angular/core";
+import { Router } from "@angular/router";
 import { Gender } from "../../../../interfaces/character-interface";
 
 @Component({
@@ -17,17 +18,22 @@ export class CharacterFilterComponent {
     @Input() public filterName = 'Default';
     @Input() public sortAlfabet: string[];
 
-    constructor(){}
+    constructor(
+        private router: Router,
+    ){}
 
     public changeGender(): void {
-        this.currentGender.emit(this.filterGender)
-    }
+        this.currentGender.emit(this.filterGender);
+        this.router.navigate(['home'], {queryParams: { selectedGender: this.filterGender }, queryParamsHandling: 'merge'});
+    };
 
     public changeName(): void {
-        this.changeCurrentName.emit(this.filterName)
-    }
+        this.changeCurrentName.emit(this.filterName);
+        this.router.navigate(['home'], {queryParams: { selectedSortName: this.filterName }, queryParamsHandling: 'merge'});
+    };
 
     public searchCurrentName(): void {
-        this.currentName.emit(this.searchName)
-    }
+        this.currentName.emit(this.searchName);
+        this.router.navigate(['home'], {queryParams: { selectedSearchName: this.searchName }, queryParamsHandling: 'merge'});
+    };
 }

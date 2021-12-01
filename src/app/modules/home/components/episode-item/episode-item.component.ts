@@ -12,7 +12,7 @@ export class EpisodeItemComponent {
     @Input() public episode: Episode;//name button
     @Input('activeEpisodeId') set activeEpisodeId(value: number) {
         this.isActive = this.episode.id === value;
-    }
+    };
 
     public isActive: boolean;
 
