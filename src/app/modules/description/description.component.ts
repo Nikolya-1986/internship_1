@@ -20,6 +20,7 @@ export class DescriptionComponent implements OnInit {
 
     public characterDetail$!: Observable<CharacterDTO<Location> | null>;
     public isEdit: boolean;
+    public episode: any;
 
     constructor(
         private store: Store<AppCharactersState>,
@@ -43,7 +44,7 @@ export class DescriptionComponent implements OnInit {
                         ...character,
                         location,
                     }
-                    console.log("Character:", characterWithLocaton)
+                    console.log("Character:", characterWithLocaton);
                     return characterWithLocaton;
                 })
             );

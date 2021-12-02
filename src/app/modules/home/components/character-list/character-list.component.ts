@@ -19,9 +19,9 @@ export class CharacterListComponent {
 
     public detailCharacter(id: number): void {
         this.onDetailCharacter.emit(id);
-    }
+    };
 
     public onShowModal(character: CharacterDTO<LocationDTO>): void {
         this.openedModal.emit(character);
-    }
+    };
 }

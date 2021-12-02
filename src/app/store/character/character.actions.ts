@@ -2,6 +2,8 @@ import { createAction, props, union } from "@ngrx/store";
 import { CharacterDTO, LocationDTO } from "../../interfaces/character-interface";
 
 export enum loadActionsType {
+    LOAD_START = '[LOADING] Load Start',
+    LOAD_END = '[LOADING] Load End',
     LOAD_CHARACTERS_REQUEST = '[CHARACTERS] Load Characters Request',
     LOAD_CHARACTERS_SUCCESS = '[CHARACTERS] Load Characters Success',
     LOAD_CHARACTERS_FAIL = '[CHARACTERS] Load Characters Fail',
@@ -9,6 +11,14 @@ export enum loadActionsType {
     DELETE_CHARACTER = '[CHARACTER] Delete Character',
     CREATE_CHARACTER = '[CHARACTER] Create Character',
 };
+
+export const loadStart = createAction (
+    loadActionsType.LOAD_START
+);
+
+export const loadEnd = createAction (
+    loadActionsType.LOAD_END
+);
 
 export const loadCharactersRequest = createAction (
     loadActionsType.LOAD_CHARACTERS_REQUEST
@@ -40,6 +50,8 @@ export const createCharacter = createAction (
 );
 
 const allCharactersActions = union({
+    loadStart,
+    loadEnd,
     loadCharactersRequest,
     loadCharactersSuccess,
     loadCharactersFail,

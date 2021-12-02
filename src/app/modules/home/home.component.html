@@ -7,13 +7,15 @@
     <app-episode-list
         [activeEpisodeId]="activeEpisodeId"
         [episodes]="episodes"
-        (episodeSelect)="onEpisodeSelect($event)"
         >
     </app-episode-list>
         
     <app-character-filter
         [gender]="gender"
+        [filterGender]="filterGender"
+        [filterName]="filterName"
         [sortAlfabet]="sortAlfabet"
+        [searchName]="searchName"
         (currentGender)="onCurrentGender($event)"
         (currentName)="onCurrentName($event)"
         (changeCurrentName)="onChangeCurrentName($event)"

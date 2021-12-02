@@ -10,10 +10,10 @@ const routes: Routes = [
     path: "description/:id", loadChildren: () => import("./modules/description/description.module").then(module => module.DescriptionCharacterCardModule), canActivate: [AuthGuard]
   },
   {
-    path: "login", loadChildren: () => import("./modules/login/login.module").then(module => module.LoginModule), canActivate: [AuthGuard]
+    path: "login", loadChildren: () => import("./modules/login/login.module").then(module => module.LoginModule)
   },
   {
-    path: "add", loadChildren: () => import("./modules/add-character/add-character.module").then(module => module.AddCharacterModule)
+    path: "add", loadChildren: () => import("./modules/add-character/add-character.module").then(module => module.AddCharacterModule), canActivate: [AuthGuard]
   },
   {
     path: '',

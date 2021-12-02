@@ -14,12 +14,19 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { reducerUsers } from './store/character/character.selector';
 import { CharactersEffects } from './store/character/character.effect';
 import { AuthGuard } from './guard/auth-guard';
-import { AuthInterceptor } from './interceptors/auth-interceptor';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { IsLoadingInterceptor } from './interceptors/isLoading.interceptor';
 
-const INTERSEPTOR: Provider = {
+const AUTH_INTERSEPTOR: Provider = {
   provide: HTTP_INTERCEPTORS,
   multi: true,
   useClass: AuthInterceptor
+};
+
+const ISLOADING_INTERSEPTOR: Provider = {
+  provide: HTTP_INTERCEPTORS,
+  multi: true,
+  useClass: IsLoadingInterceptor
 };
 
 @NgModule({
@@ -38,7 +45,7 @@ const INTERSEPTOR: Provider = {
     EffectsModule.forRoot([CharactersEffects]),
     StoreRouterConnectingModule.forRoot()
   ],
-  providers: [AuthGuard, INTERSEPTOR],
+  providers: [AuthGuard, AUTH_INTERSEPTOR, ISLOADING_INTERSEPTOR],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

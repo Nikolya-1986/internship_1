@@ -117,7 +117,7 @@
                 class="label"
                 for="add-gender"
                 >
-                Chang gender
+                Select gender
             </label>
             <select
                 id="add-gender"
@@ -148,7 +148,7 @@
                 class="label"
                 for="add-episode"
                 >
-                Change episode
+                Select episode
             </label>
             <select                 
                 id="add-episode"
@@ -156,7 +156,7 @@
                 >
                 <option 
                     *ngFor="let item of episodes"
-                    [value]="item"
+                    [value]="item.url"
                     >
                     {{ item.episode }}
                 </option>

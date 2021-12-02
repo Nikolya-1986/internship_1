@@ -5,30 +5,35 @@ import *as characterActions from "./character.actions";
 
 export interface CharactersState {
     characters: CharacterDTO<LocationDTO>[],
-    loading: boolean,
+    loadCounter: number,
     errorMessage: string | any
 }; 
 
 const initialstate: CharactersState = {
     characters: [],
-    loading: false,
+    loadCounter: 0,
     errorMessage: ""
 };
 
 export const CharactersReducer = createReducer (
     initialstate,
+    on(characterActions.loadStart, state => ({
+        ...state,
+        loadCounter: state.loadCounter + 1
+    })),
+    on(characterActions.loadEnd, state => ({
+        ...state,
+        loadCounter: state.loadCounter - 1
+    })),
     on(characterActions.loadCharactersRequest, state => ({
         ...state,
-        loading: true
     })),
     on(characterActions.loadCharactersSuccess, (state, action) => ({            
         ...state,
-        loading: false,
         characters: [...state.characters, ...action.characters]
     })),
     on(characterActions.loadCharactersFail, (state, action) => ({
         ...state,
-        loading: false,
         errorMessage: action.error
     })),
     on(characterActions.updateCharacter, (state, action) => {
@@ -36,7 +41,6 @@ export const CharactersReducer = createReducer (
         console.log(action.character);
         return {
             ...state,
-            loading: false,
             characters: updateCharacter
         }
     }),
@@ -44,7 +48,6 @@ export const CharactersReducer = createReducer (
         const deleteCharacter = [...state.characters.filter(itemDelete => itemDelete.id !== action.id)];
         return {
             ...state,
-            loading: false,
             characters: deleteCharacter
         }
     }),
@@ -52,7 +55,6 @@ export const CharactersReducer = createReducer (
         console.log("State:", action.character);
         return {
             ...state,
-            loading: false,
             characters: [action.character, ...state.characters]
         }
     })

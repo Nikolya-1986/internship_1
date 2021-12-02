@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { select, Store } from "@ngrx/store";
-import { Observable, Subscription } from "rxjs";
+import { Observable, Subject } from "rxjs";
 
 import { CharacterService } from "src/app/services/character/character.service";
 import AppCharactersState from "src/app/store/character/character.state";
@@ -9,6 +9,7 @@ import { CharacterDTO, Episode, Gender, LocationDTO } from "../../interfaces/cha
 import { ModalService } from "./components/services/modal.service";
 import * as charactersActions from "../../store/character/character.actions";
 import * as charactersSelectors from "../../store/character/character.selector";
+import { switchMap, takeUntil } from "rxjs/operators";
 
 @Component({
     selector: 'app-home',
@@ -19,8 +20,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     @ViewChild('modal', { read: ViewContainerRef, static: false })
 
-    public viewContainerRef: ViewContainerRef;
-    public subscription: Subscription;
+    private viewContainerRef: ViewContainerRef;
+    private destroy$ = new Subject();
+    
     public loading$!: Observable<string | any>;
     public characters$!: Observable<CharacterDTO<LocationDTO>[]>;
     public error$!: Observable<Error>;
@@ -32,32 +34,52 @@ export class HomeComponent implements OnInit, OnDestroy {
     public gender: Gender[] = [Gender.Male, Gender.Female, Gender.All];//show all gender
     public searchName: string = '';//pipe for fiter name
     public filterName: string = '';//pipe for fiter Alphabet
-    public sortAlfabet: string[] = ['Default', 'Alphabet(Aa-Zz)', 'Alphabet(Zz-Aa)']//sort name alphabet for filter
-    
+    public sortAlfabet: string[] = ['Default', 'Alphabet(Aa-Zz)', 'Alphabet(Zz-Aa)'];//sort name alphabet for filter
+
     constructor(
         private store: Store<AppCharactersState>,
         private characterService: CharacterService,
+        private activateRoute: ActivatedRoute,
         private router: Router,
         private modalService: ModalService
     ){}
 
     public ngOnInit(): void {
         this.store.dispatch(charactersActions.loadCharactersRequest());
-        this.loading$ = this.store.pipe(select(charactersSelectors.getCharactersLoadingSelector));
+        this.loading$ = this.store.pipe(select(charactersSelectors.getIsLoading));
         this.characters$ = this.store.pipe(select(charactersSelectors.getCharactersListSelector));
         this.error$ = this.store.pipe(select(charactersSelectors.getCharactersFailSelector));
-    
-        this.characterService.getEpisodes().subscribe((episodes) => {
-            this.activeEpisodeId = episodes[0].id;
-            this.characterIds = episodes[0].characters;
-            this.episodes = episodes;
-        });
+
+        this.saveQueryparams();
     };
 
+    private saveQueryparams(): void {
+        const episodes$ = this.characterService.getEpisodes();
+        const routerQueryParams$ = this.activateRoute.queryParamMap;
 
-    public onEpisodeSelect(episodeId: number): void {
-        this.activeEpisodeId = episodeId;
-        this.characterIds = this.episodes.find(episode => episode.id === episodeId).characters;
+        episodes$.pipe(switchMap((episodes) => {
+            this.episodes = episodes;
+            return routerQueryParams$;
+        }))
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(params => {
+            const episodeId = Number(params.get('episode'));
+            const genderSelected = params.get('selectedGender') as Gender || Gender.All;
+            const nameSelected = params.get('selectedSortName') || 'Default';
+            const nameSearch = params.get('selectedSearchName') || '';
+            this.filterGender = genderSelected;
+            this.filterName = nameSelected;
+            this.searchName = nameSearch;
+
+            if(episodeId) {
+                this.activeEpisodeId = episodeId;
+                this.characterIds = this.episodes.find(episode => episode.id === this.activeEpisodeId).characters;
+            }
+            else {
+                this.activeEpisodeId = this.episodes[0].id;
+                this.characterIds = this.episodes[0].characters;
+            }
+        })
     };
 
     public onCurrentGender(currentSelectGender): void {
@@ -78,21 +100,21 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     public onOpenedModal(character: CharacterDTO<LocationDTO>): void  {
         console.log("Delete id:", character.id);
-        this.subscription = this.modalService.openModal(
+        this.modalService.openModal(
             this.viewContainerRef, 
             'Are you sure you want to delete the current character?', 
             'Click confirm if you want otherwise close',
             character,
-            ).subscribe((item) => {
-                this.store.dispatch(charactersActions.deleteCharacter({id: character.id}));
-                console.log(item);
-            }
-        );
-    }
+        )
+        .pipe(takeUntil(this.destroy$))
+        .subscribe((item) => {
+            this.store.dispatch(charactersActions.deleteCharacter({id: character.id}));
+            console.log(item);
+        });
+    };
 
     public ngOnDestroy(): void {
-        if (this.subscription) {
-            this.subscription.unsubscribe();
-        }
+        this.destroy$.next();
+        this.destroy$.complete();
     }
 }

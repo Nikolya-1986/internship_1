@@ -10,10 +10,11 @@ import { AuthServise } from "src/app/modules/login/services/auth/auth.servise";
 export class NavComponent {
 
     public logo: string = "assets/images/Angular_full_color_logo.svg";
+    public episode: string;
 
     constructor(
         public authServise: AuthServise,
-        private router: Router
+        private router: Router,
     ){}
 
     public logout(): void {
