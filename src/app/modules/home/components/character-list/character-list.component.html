@@ -1,7 +1,7 @@
-<section class="character-list__container character-list">
-
+<section class="characters__container characters">
+    
     <ng-content></ng-content>
-    <div class="character-list__item">
+    <div class="characters__list">
         
         <div *ngIf="error else showBlock">
             <strong>
@@ -9,19 +9,30 @@
             </strong>
         </div>
         <ng-template #showBlock> 
-            <div *ngFor="let character of characters | 
-                sortCharacterName: searchName |
-                filterGenderCharacter: filterGender | 
-                filterEpisodeCharacter: characterIds |
-                filterNameCharacter: filterName"
+            
+            <cdk-virtual-scroll-viewport 
+                itemSize="75" 
+                class="characters__example-viewport"
                 >
-                <app-character-item
-                    [character]="character"
-                    (onDetailCharacter)="detailCharacter($event)"
-                    (showModal)="onShowModal($event)"
-                    >
-                </app-character-item>
-            </div>
+                <div class="characters__example-list">
+                    <div 
+                        class="example-item"
+                        *cdkVirtualFor="let character of characters | 
+                        sortCharacterName: searchName |
+                        filterGenderCharacter: filterGender | 
+                        filterEpisodeCharacter: characterIds |
+                        filterNameCharacter: filterName"
+                        >
+                        <app-character-item
+                            [character]="character"
+                            (onDetailCharacter)="detailCharacter($event)"
+                            (showModal)="onShowModal($event)"
+                            >
+                        </app-character-item>
+                    </div>
+                </div>
+               
+            </cdk-virtual-scroll-viewport>
         </ng-template>
     </div>
     

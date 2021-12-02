@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { HomeComponent } from "./home.component";
 import { CharacterListComponent } from "./components/character-list/character-list.component";
 import { CharacterItemComponent } from "./components/character-item/character-item.component";
@@ -36,6 +37,7 @@ import { FilterNameCharacterPipe } from "./pipe/filter-name-character.pipe";
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
+        ScrollingModule,
         RouterModule.forChild([
             {
                 path: "", component: HomeComponent
