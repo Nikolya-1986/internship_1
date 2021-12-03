@@ -22,7 +22,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     private viewContainerRef: ViewContainerRef;
     private destroy$ = new Subject();
-    
     public loading$!: Observable<string | any>;
     public characters$!: Observable<CharacterDTO<LocationDTO>[]>;
     public error$!: Observable<Error>;
@@ -59,6 +58,19 @@ export class HomeComponent implements OnInit, OnDestroy {
 
         episodes$.pipe(switchMap((episodes) => {
             this.episodes = episodes;
+            const episodesId = Math.random();
+            const allCharacters = episodes.reduce((acc, item) => {
+                const uniqueCharacters = [...new Set(acc.concat(item.characters))];
+                return uniqueCharacters;
+            }, []);
+            const episodeAll: Episode = {
+                id: episodesId,
+                episode: 'SAllEAll',
+                characters: allCharacters,
+                url: `'https://rickandmortyapi.com/api/episode/${episodesId}'`
+            };
+            this.episodes = [episodeAll, ...this.episodes]
+            console.log(this.episodes);
             return routerQueryParams$;
         }))
         .pipe(takeUntil(this.destroy$))
@@ -77,7 +89,6 @@ export class HomeComponent implements OnInit, OnDestroy {
             }
             else {
                 this.activeEpisodeId = this.episodes[0].id;
-                this.characterIds = this.episodes[0].characters;
             }
         })
     };

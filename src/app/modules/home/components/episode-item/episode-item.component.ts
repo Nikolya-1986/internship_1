@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
+
 import { Episode } from "src/app/interfaces/character-interface";
 
 @Component({
@@ -16,7 +17,7 @@ export class EpisodeItemComponent {
 
     public isActive: boolean;
 
-    constructor(){ }
+    constructor(){}
 
     public episodeSelect(): void {
        this.episodeChange.emit(this.episode.id);
