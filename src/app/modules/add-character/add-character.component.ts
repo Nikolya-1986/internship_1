@@ -100,14 +100,13 @@ export class AddCharacterComponent implements OnInit {
         if(this.formAdd.valid) {
             const newCharacter = this.formAdd.getRawValue();
             const id = Math.floor(Math.random() * 100) + 1;
-            const saveCharacter: CharacterDTO<LocationDTO> = {
+            const character: CharacterDTO<LocationDTO> = {
                 ...newCharacter,
                 episode: [newCharacter.episode],
                 image: this.base64Image,
                 id
             };
-            console.log(saveCharacter);
-            this.store.dispatch(characterActions.createCharacter({character: saveCharacter}));
+            this.store.dispatch(characterActions.createCharacter({character}));
             this.router.navigate(['/'])
         }
     };
