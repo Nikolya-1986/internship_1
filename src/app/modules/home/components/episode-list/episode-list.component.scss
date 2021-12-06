@@ -1,5 +1,10 @@
-.episode-list {
+.episode {
     margin-bottom: 1.5rem;
     display: flex;
     flex-wrap: wrap;
+
+    &__item {
+        margin: .6rem;
+        padding: .2rem .5rem;
+    }
 }

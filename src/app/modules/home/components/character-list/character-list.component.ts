@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, ViewChild, } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { CharacterDTO, Gender, LocationDTO } from "../../../../interfaces/character-interface";
 
 @Component({
@@ -24,6 +24,4 @@ export class CharacterListComponent {
     public onShowModal(character: CharacterDTO<LocationDTO>): void {
         this.openedModal.emit(character);
     };
-
-  
 }

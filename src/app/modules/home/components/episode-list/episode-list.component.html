@@ -1,19 +1,10 @@
-<section class="episode-list__container episode-list">
-    <!-- <button 
-        class="episode-character__button"
+<section class="episode__container episode">
+
+    <app-episode-item *ngFor="let episode of episodes"
+        (episodeChange)="onEpisodeChange($event)"
+        [episode]="episode"
+        [activeEpisodeId]="activeEpisodeId"
         >
-        Serie: all Episode: all
-    </button> -->
-    <div 
-        *ngFor="let episode of episodes"
-        class="episode-list__buttons"
-        >
-        <app-episode-item
-            (episodeChange)="onEpisodeChange($event)"
-            [episode]="episode"
-            [activeEpisodeId]="activeEpisodeId"
-            > 
-            <ng-content></ng-content>
-        </app-episode-item>
-    </div>
+    </app-episode-item>
+    
 </section>
