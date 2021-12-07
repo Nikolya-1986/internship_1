@@ -10,6 +10,7 @@ import { CharacterDTO, Episode, Gender, LocationDTO } from "../../interfaces/cha
 import AppCharactersState from "../../store/character/character.state";
 import { imageValidator } from "../../validators/image-validator";
 import * as characterActions from "../../store/character/character.actions";
+import { Custom } from "src/app/components/custom-decorator/custom";
 
 @Component({
     selector: 'app-add-character',
@@ -21,8 +22,9 @@ export class AddCharacterComponent implements OnInit {
     public formAdd: FormGroup;
     public gender: Gender[] = [Gender.Female, Gender.Male];
     public episodes: Episode[];
-    private base64Image: string;
     public characterEpisodeIds: number[];
+    private base64Image: string;
+    private custom: Custom = new Custom;
 
     constructor(
         private formBilder: FormBuilder,
@@ -94,6 +96,8 @@ export class AddCharacterComponent implements OnInit {
         this.characterService.getEpisodes().subscribe((episodes) => {
             this.episodes = episodes;
         });
+
+        console.log("Frameworks:", this.custom['framework']);
     };
 
     public saveCharacter(): void {
