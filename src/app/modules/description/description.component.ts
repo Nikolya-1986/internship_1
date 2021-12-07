@@ -10,7 +10,6 @@ import * as charactersActions from "../../store/character/character.actions";
 import AppCharactersState from "../../store/character/character.state";
 import { CharacterService } from "../../services/character/character.service";
 
-
 @Component({
     selector: 'app-description-character',
     templateUrl: './description.component.html',
