@@ -14,7 +14,6 @@
 * {
   padding: 0;
   margin: 0;
-  outline: 0;
 }
 
 *, *::before, *::after {
@@ -58,6 +57,7 @@ ul {
 
 a {
   text-decoration: none;
+  color: var(--light-color);
 }
 
 button {

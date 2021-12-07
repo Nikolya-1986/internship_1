@@ -49,47 +49,57 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.characters$ = this.store.pipe(select(charactersSelectors.getCharactersListSelector));
         this.error$ = this.store.pipe(select(charactersSelectors.getCharactersFailSelector));
 
-        this.saveQueryparams();
+        this.filterEpisodes();
     };
 
-    private saveQueryparams(): void {
+    private getEpisodes(episodes: Episode[]): Episode {
+        const episodesId = 0;
+        const allCharacters = episodes.reduce((acc, item) => {
+            const uniqueCharacters = [...new Set(acc.concat(item.characters))];
+            return uniqueCharacters;
+        }, []);
+        const episodeAll: Episode = {
+            id: episodesId,
+            episode: 'SAllEAll',
+            characters: allCharacters,
+            url: `'https://rickandmortyapi.com/api/episode/${episodesId}'`
+        };
+        return episodeAll;
+    };
+
+    private saveEpisodesQueryParams(episodeId: number): void {
+        if(episodeId) {
+            this.activeEpisodeId = episodeId;
+            if (episodeId.toString().length > 1) {
+                this.characterIds = this.episodes[0].characters;
+            }
+            else {
+                this.characterIds = this.episodes.find((episode) => episode.id === this.activeEpisodeId).characters;
+            }
+        }
+        else {
+            this.activeEpisodeId = this.episodes[0].id;
+        }
+    };
+
+    private filterEpisodes(): void {
         const episodes$ = this.characterService.getEpisodes();
         const routerQueryParams$ = this.activateRoute.queryParamMap;
 
         episodes$.pipe(switchMap((episodes) => {
             this.episodes = episodes;
-            const episodesId = Math.random();
-            const allCharacters = episodes.reduce((acc, item) => {
-                const uniqueCharacters = [...new Set(acc.concat(item.characters))];
-                return uniqueCharacters;
-            }, []);
-            const episodeAll: Episode = {
-                id: episodesId,
-                episode: 'SAllEAll',
-                characters: allCharacters,
-                url: `'https://rickandmortyapi.com/api/episode/${episodesId}'`
-            };
-            this.episodes = [episodeAll, ...this.episodes]
-            console.log(this.episodes);
+            const episodeAll = this.getEpisodes(episodes);
+            this.episodes = [episodeAll, ...this.episodes];
             return routerQueryParams$;
         }))
         .pipe(takeUntil(this.destroy$))
         .subscribe(params => {
             const episodeId = Number(params.get('episode'));
-            const genderSelected = params.get('selectedGender') as Gender || Gender.All;
-            const nameSelected = params.get('selectedSortName') || 'Default';
-            const nameSearch = params.get('selectedSearchName') || '';
-            this.filterGender = genderSelected;
-            this.filterName = nameSelected;
-            this.searchName = nameSearch;
+            this.filterGender = params.get('selectedGender') as Gender || Gender.All;
+            this.filterName = params.get('selectedSortName') || 'Default';
+            this.searchName = params.get('selectedSearchName') || '';
 
-            if(episodeId) {
-                this.activeEpisodeId = episodeId;
-                this.characterIds = this.episodes.find(episode => episode.id === this.activeEpisodeId).characters;
-            }
-            else {
-                this.activeEpisodeId = this.episodes[0].id;
-            }
+            this.saveEpisodesQueryParams(episodeId);
         })
     };
 

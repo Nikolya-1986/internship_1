@@ -1,6 +1,6 @@
 <button 
     (click)="episodeSelect()"
-    [ngClass]="{'active-button': isActive ? true : false}"
+    [class.active-button]="isActive"
     class="episode__button"
     >
     {{ episode.episode | changeText }}

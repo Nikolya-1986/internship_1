@@ -10,7 +10,7 @@ import { Episode } from "src/app/interfaces/character-interface";
 export class EpisodeItemComponent {
 
     @Output() public episodeChange = new EventEmitter<number>();
-    @Input() public episode: Episode;//name button
+    @Input() public episode: Episode;//name buttons
     @Input('activeEpisodeId') set activeEpisodeId(value: number) {
         this.isActive = this.episode.id === value;
     };

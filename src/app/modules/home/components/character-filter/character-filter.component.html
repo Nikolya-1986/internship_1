@@ -55,8 +55,9 @@
             placeholder="Enter name for search"
             [(ngModel)]="searchName"
             (input)="searchCurrentName()"
+            #focusInput
         />
     </div>
 
-    <ng-content></ng-content>
+    <ng-content select="button"></ng-content>
 </section>

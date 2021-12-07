@@ -38,7 +38,6 @@ export const CharactersReducer = createReducer (
     })),
     on(characterActions.updateCharacter, (state, action) => {
         const updateCharacter = [...state.characters.map(itemUpdate => itemUpdate.id === action.character.id ? action.character : itemUpdate)];
-        console.log(action.character);
         return {
             ...state,
             characters: updateCharacter
@@ -52,7 +51,6 @@ export const CharactersReducer = createReducer (
         }
     }),
     on(characterActions.createCharacter, (state, action) => {
-        console.log("State:", action.character);
         return {
             ...state,
             characters: [action.character, ...state.characters]
