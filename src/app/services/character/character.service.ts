@@ -13,7 +13,7 @@ export class CharacterService  {
     private readonly BASE_URL =  "https://rickandmortyapi.com/api";
 
     constructor(
-        private httpClient: HttpClient
+        private httpClient: HttpClient,
     ){}
 
     private getCharactersPage(url: string): Observable<CharactersDTO> {
@@ -26,14 +26,14 @@ export class CharacterService  {
         let characters = [];
         return this.getCharactersPage(`${this.BASE_URL}/character`).pipe(
             tap(response => {
-                characters = [...response.results]
+                characters = [...response.results];
             }),
             expand((prev) => prev.info.next ? this.getCharactersPage(prev.info.next) : EMPTY),
         )
     };
 
     public getCharactersId(id: number): Observable<CharacterDTO<LocationDTO>> {
-        return this.httpClient.get<CharacterDTO<LocationDTO>>(`${this.BASE_URL}/character/${id}`)
+        return this.httpClient.get<CharacterDTO<LocationDTO>>(`${this.BASE_URL}/character/${id}`);
     };
 
     public getLocation(url: string): Observable<Location> {
